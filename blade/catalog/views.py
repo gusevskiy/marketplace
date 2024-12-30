@@ -1,10 +1,11 @@
 from django.shortcuts import render
-
+from django.template import loader
 from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Главная страницы")
+    template = "blade/index.html"
+    return render(request, template)
 
 
 def catalog_list(request):
