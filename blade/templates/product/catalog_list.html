@@ -1,0 +1,37 @@
+{% load thumbnail %}
+{% block content %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% for product in products %}
+<ul>
+  <li>
+    Наименование: {{ product.name }}
+  </li>
+  <li>
+    Дата публикации: {{ post.pub_date|date:"d E Y" }}
+  </li>
+  <li>
+    Цена: {{ product.price }}
+  </li>
+  <li>
+    Изображение:
+    {% if product.images.first %}
+    {% thumbnail item.image "100x100" crop="center" as im %}
+    <img src="{{ product.images.first.url.url }}" alt="{{ product.name }}" style="max-width: 300px;" />
+    {% endthumbnail %}
+    {% else %}
+    <p>Нет изображения</p>
+    {% endif %}
+  </li>
+</ul>
+<p>{{ post.text }}</p>
+<a href="">все записи группы</a>
+{% if not forloop.last %}
+<hr>{% endif %}
+
+{% endfor %}
+
+{% endblock %}

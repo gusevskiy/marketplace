@@ -16,12 +16,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/fav/favicon-32x32.png' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/fav/favicon-16x16.png' %}">
 
-
-
-        <!-- Bootstrap core CSS -->
-        <link href="{% static 'cheatsheet.css' %}" rel="stylesheet">
-
-        <style>
+        <!-- <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
                 text-anchor: middle;
@@ -35,24 +30,37 @@
                     font-size: 3.5rem;
                 }
             }
-        </style>
-
-
+        </style> -->
         <!-- Custom styles for this template -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     </head>
 
     <body class="bg-light">
-   
-        
-        <!-- <main> -->
-            {% block content %}
-         
-            Контент не подвезли :(
-                {% include "includes/footer.html" %}
-            {% endblock %}
-        <!-- </main> -->
-    
+        <!-- Header -->
+        <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+            {% include "includes/header.html" %}
+        </header>
+
+        <div class="container-fluid">
+            <div class="row" style="height: calc(100vh - 100px);"> <!-- Высота минус шапка и подвал -->
+                <!-- Sidebar -->
+                <aside class="col-md-2 col-sm-3 bg-secondary text-white p-3" style="height: 100%;">
+                    {% include "includes/sidebar.html" %}
+                </aside>
+
+                <!-- Content -->
+                <main class="col-md-10 col-sm-9 p-3">
+                    {% block content %}
+
+                    {% endblock %}
+                </main>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white text-center py-3">
+            {% include "includes/footer.html" %}
+        </footer>
 
     </body>
 
