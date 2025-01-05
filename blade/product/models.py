@@ -53,11 +53,12 @@ class Product(models.Model):
     def __str__(self):
         return f"ID: {self.id} | {self.name}"
 
+
 class ProductImage(models.Model):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="images", verbose_name="Товар"
     )
-    url = models.ImageField(upload_to="madia/", verbose_name="Изображение")
+    url = models.ImageField(upload_to="product_images/", verbose_name="Изображение")
 
     def __str__(self):
         return f"Изображение для {self.product.name}"

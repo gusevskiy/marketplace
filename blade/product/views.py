@@ -4,15 +4,20 @@ from django.http import HttpResponse
 from .models import Product
 
 
-def index(request):
+# def index(request):
+#     products = Product.objects.all()
+#     context = {"products": products}
+#     return render(request, "product/index.html", context)
+
+
+def product_list(request):
+    """
+    path('', views.catalog_list, name="product_list"),
+    """
     products = Product.objects.all()
     context = {"products": products}
-    return render(request, "product/index.html", context)
+    return render(request, "product/product_list.html", context)
 
 
-def catalog_list(request):
-    return HttpResponse("Список товара")
-
-
-def catalog_detail(request, pk):
+def product_detail(request, pk):
     return HttpResponse(f"Товар {pk}")
