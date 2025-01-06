@@ -1,36 +1,23 @@
 {% load thumbnail %}
 {% for product in products %}
-<div class="col-md-4">
-  <div class="card mb-4 shadow-sm" style="background-color: #babbbc">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="50" focusable="false" role="img">
-      Изображение: {{ product.name }}
+<div class="col-md-4 mb-4">
+  <div class="product-card">
+    
+    {% if product.images.first %}
+    {% thumbnail product.images.first.url "100x100" crop="center" as im %}
+    <img src="{{ im.url }}" alt="{{ product.name }}" style="max-width: 300px;" />
+    {% endthumbnail %}
+    {% else %}
+    <p>Нет изображения</p>
+    {% endif %}
+    
+    <h5>{{ product.name }} {{ product.price }}</h5>
+    
+    <p class="card-text">
+      {{ product.description }}
+    </p>
+    <button class="btn btn-primary">В корзину</button>
 
-      {% if product.images.first %}
-      {% thumbnail product.images.first.url "100x100" crop="center" as im %}
-      <img src="{{ im.url }}" alt="{{ product.name }}" style="max-width: 300px;" />
-      {% endthumbnail %}
-      {% else %}
-      <p>Нет изображения</p>
-      {% endif %}
-
-    </svg>
-    <div class="card-body">
-      <p class="card-text">
-        {{ product.description }}
-      </p>
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="btn-group">
-          <a href="{% url 'product:product_detail' product.id %}">
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              Подробнее
-            </button>
-          </a>
-        </div>
-        <small class="text-muted">
-          Цена {{ product.price }}
-        </small>
-      </div>
-    </div>
   </div>
 </div>
 {% endfor %}

@@ -2,39 +2,12 @@
 <!-- {% load thumbnail %} -->
 {% block content %}
 
-{% block title %}
+<!-- {% block title %}
 Главная страница
-{% endblock %}
+{% endblock %} -->
 
 {% include 'product/card_product.html' %}
 
 {% endblock %}
 
 
-
-<!-- {% for product in products %}
-<ul>
-  <li>
-    Наименование: {{ product.name }}
-  </li>
-  <li>
-    Дата публикации: {{ product.pub_date|date:"d E Y" }}
-  </li>
-  <li>
-    Цена: {{ product.price }}
-  </li>
-  <li>
-    Изображение:
-    {% if product.images.first %}
-    {% thumbnail product.images.first.url "100x100" crop="center" as im %}
-    <img src="{{ im.url }}" alt="{{ product.name }}" style="max-width: 300px;" />
-    {% endthumbnail %}
-    {% else %}
-    <p>Нет изображения</p>
-    {% endif %}
-  </li>
-</ul>
-{% if not forloop.last %}
-<hr>
-{% endif %}
-{% endfor %} -->
