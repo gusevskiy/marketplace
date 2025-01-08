@@ -10,7 +10,7 @@ class Category(models.Model):
         null=True,  # Разрешаем значение null
         verbose_name="Описание категории",
     )
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
