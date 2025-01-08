@@ -1,8 +1,13 @@
 <aside class="col-md-3 sidebar">
-  <h4>Фильтры</h4>
-  <ul class="list-unstyled">
-    <li><a href="#">Категория 1</a></li>
-    <li><a href="#">Категория 2</a></li>
-    <li><a href="#">Категория 3</a></li>
+  <h3>Категории</h3>
+  <ul>
+    <li {% if not selected_category %} class="selected" {% endif %}>
+      <a href="{% url 'product:product_list' %}">Все категории</a>
+    </li>
+    {% for category in categories %}
+    <li {% if category.slug == selected_category %} class="selected" {% endif %}>
+      <a href="{% url 'product:product_list_by_category' category.slug %}">{{ category.name }}</a>
+    </li>
+    {% endfor %}
   </ul>
 </aside>

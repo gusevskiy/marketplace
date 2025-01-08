@@ -171,4 +171,5 @@ cython_debug/
 .pypirc
 
 static/
+media/
 .vscode/

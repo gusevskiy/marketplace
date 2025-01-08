@@ -9,7 +9,7 @@ urlpatterns = [
     # Главная страница
     path('', views.product_list, name="product_list"),
     # Страница со списком товара
-    # path('product/', views.catalog_list),
+    path('category/<slug:category_slug>', views.product_list_by_category, name="product_list_by_category"),
     # Отдельная страница каждого товара
     path('product/<int:pk>/', views.product_detail, name="product_detail"),
 ]

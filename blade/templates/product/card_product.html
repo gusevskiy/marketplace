@@ -2,17 +2,22 @@
 {% for product in products %}
 <div class="col-md-4 mb-4">
   <div class="product-card">
-    
+
     {% if product.images.first %}
     {% thumbnail product.images.first.url "100x100" crop="center" as im %}
     <img src="{{ im.url }}" alt="{{ product.name }}" style="max-width: 300px;" />
     {% endthumbnail %}
     {% else %}
-    <p>Нет изображения</p>
+    <div style="display: flex; align-items: center; justify-content: center; ">
+      <div style="width: 100px; height: 100px; background-color: #ccc;">
+        Нет фото
+      </div>
+    </div>
     {% endif %}
-    
-    <h5>{{ product.name }} {{ product.price }}</h5>
-    
+
+    <h5> {{ product.price }} руб.</h5>
+    <h5>{{ product.name }}</h5>
+
     <p class="card-text">
       {{ product.description }}
     </p>

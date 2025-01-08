@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+from unidecode import unidecode
 
 
 class Category(models.Model):
@@ -8,6 +10,12 @@ class Category(models.Model):
         null=True,  # Разрешаем значение null
         verbose_name="Описание категории",
     )
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
