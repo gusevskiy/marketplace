@@ -6,18 +6,9 @@ from product.models import Product, Category
 
 class Command(BaseCommand):
     """
-
+    загрузить данные командой
+    python manage.py load_product
     """
-
-    # help = "Загрузить данные в модель Product"
-
-    # def add_arguments(self, parser: CommandParser) -> None:
-    #     parser.add_argument(
-    #         'csv_file',
-    #         type=str,
-    #         help="'Путь к CSV-файлу с данными для загрузки'"
-    #     )
-
     def handle(self, *args, **kwargs):
         csv_file_path = "/home/gusevskiy/develop/marketplace/blade/data/blade.csv"
         self.stdout.write(self.style.WARNING("Старт команды"))
