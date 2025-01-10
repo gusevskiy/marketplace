@@ -50,18 +50,15 @@
         <!-- Основной контент -->
         <main class="container mt-4">
             <div class="row">
-                <!-- Боковая панель -->
+                
+                <!-- Боковая панель видна всегда-->
                 {% include "includes/sidebar.html" %}
 
-
-                <!-- Основная область с товарами -->
+                <!-- Основная область для меняющегося контента -->
                 <section class="col-md-9">
-                    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                        <!-- Карточка товара 1 -->
                         {% block content %}
 
                         {% endblock %}
-                    </div>
                 </section>
             </div>
         </main>
