@@ -1,7 +1,9 @@
+from tabnanny import verbose
 from django.db import models
 from django.utils.text import slugify
 from unidecode import unidecode
 from django.conf import settings
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -18,9 +20,18 @@ class Category(models.Model):
             self.slug = slugify(unidecode(self.name))
         super().save(*args, **kwargs)
 
+    class Meta:
+        ordering = ['name']
+        indexes = [models.Index(fields=['name']),]
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
     def __str__(self):
         return self.name
-
+    
+    def get_absolute_url(self):
+        return reverse("product:product_list_by_category", args=['slug'])
+    
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название товара")
@@ -34,10 +45,11 @@ class Product(models.Model):
         Category,
         null=True,  # Разрешаем значение null
         blank=True,  # Разрешаем оставить поле пустым в админке
-        related_name="product",
+        related_name="products",
         on_delete=models.SET_DEFAULT,
         default=1,
     )
+    slug = models.SlugField(max_length=200)
     brand = models.CharField(
         max_length=255, blank=True, null=True, verbose_name="Бренд"
     )
@@ -61,6 +73,25 @@ class Product(models.Model):
         auto_now_add=True, verbose_name="Дата добавления")
     updated_up = models.DateTimeField(
         auto_now=True, verbose_name="Дата изменения")
+    # наличие товара
+    available = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['name']
+        indexes = [
+            models.Index(fields=['id', 'slug']),
+            models.Index(fields=['name']),
+            models.Index(fields=['-created_at']),  # - дефис для обратной сортировки
+        ]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("product:product_detail", args=[self.id, self.slug])
+    
 
     def __str__(self):
         return f"ID: {self.id} | {self.name}"

@@ -38,5 +38,8 @@ def product_list_by_category(request, category_slug):
     return render(request, "product/product_list.html", content)
 
 
-def product_detail(request, pk):
-    return HttpResponse(f"Товар {pk}")
+def product_detail(request, id, slug):
+    product = get_object_or_404(
+        Product, id=id, slug=slug
+    )
+    return render(request, 'product/product_detail.html')
