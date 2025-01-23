@@ -1,7 +1,8 @@
 {% load thumbnail %}
-{% for product in products %}
+{% for product in page_obj %}
 <div class="col">
-  <div class="card mb-4 rounded-3 shadow-sm" style="border: 1px solid #ccc; padding: 10px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 350px;">
+  <div class="card mb-4 rounded-3 shadow-sm"
+    style="border: 1px solid #ccc; padding: 10px; box-sizing: border-box; display: flex; flex-direction: column; min-height: 350px;">
     <!-- <div class="product-card" style="max-width: 300px; border: 1px solid #ccc; padding: 10px; box-sizing: border-box;"> -->
     {% if product.images.first %}
     {% thumbnail product.images.first.url "200x200" crop="center" as im %}

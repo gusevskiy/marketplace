@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'product.apps.ProductConfig',
+    'cart.apps.CartConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,6 +60,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # В переводе на человеческий язык эта инструкция будет звучать так:
+                # Найди в корне проекта папку core/, в ней - папку context_processors/, там - файл year.py, а в этом файле - функцию year() Словарь, который она возвращает, добавь на все страницы проекта.
+                'core.context_processors.year.year'
             ],
             # после дебага удалить
             'loaders': [
@@ -138,3 +142,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'product:product_list'
+
+CART_SESSION_ID = 'cart'
