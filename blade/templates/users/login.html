@@ -5,11 +5,11 @@
 {% load user_filters %}
 <div class="row justify-content-center">
     <div class="col-md-8 p-5">
-        <div class="card">
-            <div class="card-header">
+        <div class="cart">
+            <div class="cart-header">
                 Войти на сайт
             </div>
-            <div class="card-body">
+            <div class="cart-body">
                 {% if form.errors %}
                 {% for field in form %}
                 {% for error in field.errors %}
@@ -58,8 +58,8 @@
                         </a>
                     </div>
                 </form>
-            </div> <!-- card body -->
-        </div> <!-- card -->
+            </div> <!-- cart body -->
+        </div> <!-- cart -->
     </div> <!-- col -->
 </div> <!-- row -->
 {% endblock %}

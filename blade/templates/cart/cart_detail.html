@@ -18,39 +18,39 @@ Your shopping cart
     </thead>
     <tbody>
         {% for item in cart %}
-        {% with product=item.product %}
-        <tr>
-            <!-- Картинка -->
-            <td>
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{{ product.image.url }}
-                    {% else %}{% static 'img/no_image.png' %}{% endif %}">
-                </a>
-            </td>
-            <!-- наименование -->
-            <td>{{ product.name }}</td>
-            <!-- количество -->
-            <td>
-                <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                    {{ item.update_quantity_form.quantity }}
-                    {{ item.update_quantity_form.override }}
-                    <input type="submit" value="Update">
-                    {% csrf_token %}
-                </form>
-            </td>
-            <!-- Удаление  -->
-            <td>
-                <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                    <input type="submit" value="Remove">
-                    {% csrf_token %}
-                </form>
-            </td>
-            <!-- Цена -->
-            <td class="num">${{ item.price }}</td>
-            <!-- Общая  цена -->
-            <td class="num">${{ item.total_price }}</td>
-        </tr>
-        {% endwith %}
+            {% with product=item.product %}
+            <tr>
+                <!-- Картинка -->
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}
+                        {% else %}{% static 'img/no_image.png' %}{% endif %}">
+                    </a>
+                </td>
+                <!-- наименование -->
+                <td>{{ product.name }}</td>
+                <!-- количество -->
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.override }}
+                        <input type="submit" value="Update">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <!-- Удаление  -->
+                <td>
+                    <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                        <input type="submit" value="Remove">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <!-- Цена -->
+                <td class="num">${{ item.price }}</td>
+                <!-- Общая  цена -->
+                <td class="num">${{ item.total_price }}</td>
+            </tr>
+            {% endwith %}
         {% endfor %}
         <tr class="total">
             <td>Total</td>

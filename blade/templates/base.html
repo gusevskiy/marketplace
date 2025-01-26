@@ -48,6 +48,9 @@
 
         <div id="subheader">
             <div class="cart">
+
+                {{ cart|length }}
+
                 {% with total_items=cart|length %}
                 {% if total_items > 0 %}
                 Your cart:

@@ -20,14 +20,15 @@ class Cart:
         добавить товар в корзину либо обновить его кол-во
         """
         product_id = str(product.id)
-        if product_id not in self.card:
-            self.card[product_id] = {
+        if product_id not in self.cart:
+            self.cart[product_id] = {
                 'quantity': 0, 'price': str(product.price)}
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
         self.save()
+        print("Cart after adding:", self.cart)  # Отладочная печать
 
     def save(self):
         # пометить сеанс как измененный,чтобы обеспечить его сохранение
@@ -65,8 +66,8 @@ class Cart:
 
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
-    
+
     def clear(self):
         # Удалить корзину из сеанса
-        del self.session[settings.CARD_SESSION_ID]
+        del self.session[settings.CART_SESSION_ID]
         self.save()

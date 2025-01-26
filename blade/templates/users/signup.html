@@ -6,11 +6,11 @@
 
 <div class="row justify-content-center">
     <div class="col-md-8 p-5">
-        <div class="card">
-            <div class="card-header">
+        <div class="cart">
+            <div class="cart-header">
                 Зарегистрироваться
             </div>
-            <div class="card-body">
+            <div class="cart-body">
                 {# Этот блок будет показан, если в форме есть ошибки #}
                 {% if form.errors %}
                 {% for field in form %}
@@ -53,8 +53,8 @@
                         </button>
                     </div>
                 </form>
-            </div> <!-- card body -->
-        </div> <!-- card -->
+            </div> <!-- cart body -->
+        </div> <!-- cart -->
     </div> <!-- col -->
 </div> <!-- row -->
 {% endblock %}
