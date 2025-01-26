@@ -1,12 +1,12 @@
 <aside class="col-md-3 sidebar">
   <h3>Категории</h3>
   <ul>
-    <li {% if not selected_category %} class="selected" {% endif %}>
+    <li {% if not category %} class="selected" {% endif %}>
       <a href="{% url 'product:product_list' %}">Все категории</a>
     </li>
-    {% for category in categories %}
-    <li {% if category.slug == selected_category %} class="selected" {% endif %}>
-      <a href="{% url 'product:product_list_by_category' category.slug %}">{{ category.name }}</a>
+    {% for c in categories %}
+    <li {% if category.slug == c.slug %} class="selected" {% endif %}>
+      <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
     </li>
     {% endfor %}
   </ul>

@@ -53,31 +53,32 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATES_DIR],
         # после дебага изменить на True
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
                 # В переводе на человеческий язык эта инструкция будет звучать так:
                 # Найди в корне проекта папку core/, в ней - папку context_processors/, там - файл year.py, а в этом файле - функцию year() Словарь, который она возвращает, добавь на все страницы проекта.
                 'core.context_processors.year.year'
             ],
             # после дебага удалить
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ],
-            # после дебага удалить
-            'debug': True
+            # 'loaders': [
+            #     'django.template.loaders.filesystem.Loader',
+            #     'django.template.loaders.app_directories.Loader',
+            # ],
+            # # после дебага удалить
+            # 'debug': True
         },
     },
 ]
 
-# после дебага удалить
-THUMBNAIL_DEBUG = True
-THUMBNAIL_CACHE = 'default'
+# # после дебага удалить
+# THUMBNAIL_DEBUG = True
+# THUMBNAIL_CACHE = 'default'
 
 
 WSGI_APPLICATION = 'blade.wsgi.application'

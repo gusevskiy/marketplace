@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
-<!-- {% load thumbnail %} -->
+
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
 {% block content %}
+
 <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
     <!-- Карточка товара -->
     {% include 'product/card_product.html' %}
 
-    
+
 </div>
 <div class="d-flex justify-content-center">
-{% include 'includes/paginator.html' %}
+    {% include 'includes/paginator.html' %}
 </div>
 {% endblock %}
