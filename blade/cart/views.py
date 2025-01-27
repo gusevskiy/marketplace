@@ -9,7 +9,6 @@ def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     form = CartAddProductForm(request.POST)
-    print(form.is_valid())
     if form.is_valid():
         cd = form.cleaned_data
         print("Cleaned data:", cd)  # Отладочная печать
@@ -18,7 +17,6 @@ def cart_add(request, product_id):
             quantity=cd['quantity'],
             override_quantity=cd['override']
         )
-    print(form.errors)
     return redirect('cart:cart_detail')
 
 
@@ -32,8 +30,7 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    print("Cart items:", list(cart))  # Отладочная печать
-    print("Cart in detail view:", cart.cart)  # Отладочная печать
+
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={
             'quantity': item['quantity'],

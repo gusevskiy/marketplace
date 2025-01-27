@@ -20,7 +20,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Каталог</a>
+                            <a class="nav-link" href="{% url 'product:product_list' %}">Каталог</a>
                         </li>
 
                         <li class="nav-item">
@@ -30,10 +30,45 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">{{ user.username }}</a>
                         </li>
+                        <!-- Корзина -->
                         <li class="nav-item">
-                            <a class="nav-link link-light" href="{% url 'users:logout' %}">
-                                Выйти
+                            <!-- <div class="cart"> -->
+
+                            <!-- {{ cart|length }} -->
+
+                            <a href="{% url 'cart:cart_detail' %}" class="nav-link">
+                                {% with total_items=cart|length %}
+                                {% if total_items > 0 %}
+                                В корзина {{ total_items }} ножа на сумму:
+                                {{ cart.get_total_price }}руб.
+                                {% elif not order %}
+                                Корзина
+                                {% endif %}
+                                {% endwith %}
                             </a>
+                            <!-- </div> -->
+                        </li>
+
+                        <!-- Выйти/Войти -->
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'users:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary" 
+                                
+                                >
+                                  Выйти
+                                </button>
+                              </form>
+                            <!-- <div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#logoutModal">
+                                    Выйти
+                                </button>
+                            </div> -->
+                            <!-- Модальное окно -->
+                             
+
+
                         </li>
                         {% else %}
                         <li class="nav-item">
