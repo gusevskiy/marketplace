@@ -53,12 +53,10 @@
                         <li class="nav-item">
                             <form method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-primary" 
-                                
-                                >
-                                  Выйти
+                                <button type="submit" class="btn btn-primary">
+                                    Выйти
                                 </button>
-                              </form>
+                            </form>
                             <!-- <div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#logoutModal">
@@ -66,13 +64,21 @@
                                 </button>
                             </div> -->
                             <!-- Модальное окно -->
-                             
+
 
 
                         </li>
                         {% else %}
                         <li class="nav-item">
                             <a href="{% url 'users:login' %}" class="nav-link">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-light
+                                {% if view_name == 'users:signup' %}
+                                active
+                                {% endif %}" href="{% url 'users:signup' %}">
+                                Регистрация
+                            </a>
                         </li>
                         {% endif %}
                     </ul>
