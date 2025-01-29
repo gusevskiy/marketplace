@@ -5,8 +5,10 @@
     style="border: 1px solid #ccc; padding: 10px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; min-height: 350px;">
 
     <!-- Изображение продукта -->
+
     {% if product.images.first %}
-    {% thumbnail product.images.first.url "400x400" crop="center" as im %}
+    <!-- product.images.first.image -> "image" это поле в модели ProductImage -->
+    {% thumbnail product.images.first.image "400x400" crop="center" as im %}
     <a href="{{ product.get_absolute_url }}" style="display: block; text-align: center;">
       <img src="{{ im.url }}" alt="{{ product.name }}" style="max-width: 100%; height: auto; margin: 0 auto;" />
     </a>

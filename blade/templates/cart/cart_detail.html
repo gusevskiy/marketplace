@@ -13,7 +13,7 @@ Your shopping cart
         <div class="row p-3" style="border: 1px solid #ccc; background-color: white; margin: 2px;">
             <div class="col-md-2">
                 {% if product.images.first %}
-                {% thumbnail product.images.first.url "100x100" crop="center" as im %}
+                {% thumbnail product.images.first.image "100x100" crop="center" as im %}
                 <a href="{{ product.get_absolute_url }}" style="display: block; text-align: center;">
                     <img src="{{ im.url }}" alt="{{ item.name }}"
                         style="max-width: 100%; height: auto; margin: 0 auto;" />

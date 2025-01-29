@@ -1,4 +1,16 @@
 # marketplace
+## Start
+```bash
+git clone
+. venv/Scripts/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+# delop data
+python manage.py load_product
+python manage.py load_images C:\\Users\\SuperBest\\Pictures\\ножи
+```
+
 
 https://github.com/PacktPublishing/Django-4-by-Example/tree/main/Chapter08/myshop/shop/static
 
@@ -6,7 +18,18 @@ https://github.com/PacktPublishing/Django-4-by-Example/tree/main/Chapter08/mysho
 https://htmx.org/docs/#installing
 
 https://tailwindcss.com/
-https://bootstrap-4.ru/articles/cheatsheet/#btn-primary
+
+# bootstrap
+https://getbootstrap.su/  # на русском 
+https://getbootstrap.su/docs/5.3/utilities/background/  # цвета
+
+# расшифровка классов
+https://getbootstrap.com/docs/5.3/utilities/spacing/
+## Шрифты google
+https://fonts.google.com/selection/embed
+## Иконки
+https://fontawesome.com/icons
+https://docs.fontawesome.com/web/use-with/python-django
 
 note:
 1) подпись в footer.html
@@ -21,3 +44,11 @@ python manage.py test cart.tests.CartTests.
 
 какой то один 
 python manage.py test cart.tests.CartTests.test_add_product
+
+
+
+
+
+Тeстовые пользователи
+petrov
+vlgu12@yandex.ru
