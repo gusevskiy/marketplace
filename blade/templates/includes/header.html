@@ -69,6 +69,7 @@
 
               <a href="{% url 'cart:cart_detail' %}" class="nav-link">
                 {% with total_items=cart|length %}
+                <!-- если корзмна не пуста -->
                 {% if total_items > 0 %}
                 <i class="fa-solid fa-cart-shopping"></i> {{ total_items }} =
                 {{ cart.get_total_price }}руб.

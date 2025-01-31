@@ -23,18 +23,15 @@
     </aside>
     <!-- Основная область для меняющегося контента -->
     <section class="col-md-9 color-window p-4">
-      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-
+      <!-- <div class="row row-cols-1 row-cols-md-3 mb-3 text-center"> -->
+      <div class="row">
         <!-- Карточка товара -->
         {% include 'product/cycle_products.html' %}
-
-
       </div>
       <div class="d-flex justify-content-center">
         {% include 'includes/paginator.html' %}
       </div>
-    </section>
-
   </div>
+  </section>
 </div>
 {% endblock %}

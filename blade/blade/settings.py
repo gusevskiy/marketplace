@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'orders.apps.OrdersConfig',
     'django_extensions',
     'fontawesomefree',  # иконки
     'core.apps.CoreConfig',
@@ -149,3 +150,5 @@ LOGIN_REDIRECT_URL = 'product:product_list'
 LOGOUT_REDIRECT_URL = 'product:product_list'
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
