@@ -4,7 +4,7 @@ from .models import Order
 
 
 @shared_task
-def order_create(order_id):
+def order_created(order_id):
     """
     Задание по отправке уведомления по электронной почте
     при успешном создании заказа.

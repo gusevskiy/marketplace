@@ -21,13 +21,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'product.apps.ProductConfig',
     'orders.apps.OrdersConfig',
-    'django_extensions',
-    'fontawesomefree',  # иконки
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
-    'product.apps.ProductConfig',
     'cart.apps.CartConfig',
+    'fontawesomefree',  # иконки
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,3 +152,8 @@ LOGOUT_REDIRECT_URL = 'product:product_list'
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+CELERY_BROKER_URL = 'amqp://gusevskiy:Dreamer3190506@localhost:5672//'
+
+broker_connection_retry_on_startup = True
