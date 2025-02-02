@@ -8,10 +8,15 @@ python manage.py migrate
 python manage.py createsuperuser
 # download data
 python manage.py load_product
+windows
 python manage.py load_images C:\\Users\\SuperBest\\Pictures\\ножи
+ubuntu
+python3 manage.py load_images /home/gusevskiy/windows/ножи
 
 # RabbitMQ
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+# Celery
+celery -A blade worker -l info
 ```
 
 
