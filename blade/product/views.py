@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
 from django.template import loader
 from django.http import HttpResponse
-from .models import Product, Category
+from .models import Product, Category,  ProductImage
 from cart.forms import CartAddProductForm
 
 
@@ -33,25 +33,21 @@ def product_list(request, category_slug=None):
     return render(request, "product/product_list.html", content)
 
 
-# def product_list_by_category(request, category_slug):
-#     categories = Category.objects.all()
-#     category = get_object_or_404(Category, slug=category_slug)
-#     products = Product.objects.filter(category=category)
-#     content = {
-#         "categories": categories,
-#         "products": products,
-#         "selected_category": category_slug
-#     }
-#     return render(request, "product/product_list.html", content)
-
-
 def product_detail(request, id, slug):
+    """
+    Указанный экземпляр
+    можно получить только по id, так как это уникальный атрибут. Однако
+    в URL-адрес еще включается slug, чтобы формировать дружественные для
+    поисковой оптимизации URL-адреса товаров.
+    """
     product = get_object_or_404(
         Product, id=id, slug=slug
     )
+    images = product.images.all()
     cart_product_form = CartAddProductForm()
     content = {
         'product': product,
-        'cart_product_form': cart_product_form    
+        'cart_product_form': cart_product_form,
+        'images': images
     }
     return render(request, 'product/product_detail.html', content)

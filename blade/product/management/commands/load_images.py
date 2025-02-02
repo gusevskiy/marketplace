@@ -41,7 +41,7 @@ class Command(BaseCommand):
                 with open(image_path, 'rb') as img_file:
                     ProductImage.objects.create(
                         product=product,
-                        url=File(img_file, name=file_name)
+                        image=File(img_file, name=file_name)
                     )
                 self.stdout.write(self.style.SUCCESS(f"Изображение {file_name} привязано к продукту id={product_id}"))
 

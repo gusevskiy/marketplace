@@ -21,10 +21,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'product.apps.ProductConfig',
+    'orders.apps.OrdersConfig',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
-    'product.apps.ProductConfig',
     'cart.apps.CartConfig',
+    'fontawesomefree',  # иконки
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,7 +132,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
@@ -146,3 +150,10 @@ LOGIN_REDIRECT_URL = 'product:product_list'
 LOGOUT_REDIRECT_URL = 'product:product_list'
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+CELERY_BROKER_URL = 'amqp://gusevskiy:Dreamer3190506@localhost:5672//'
+
+broker_connection_retry_on_startup = True

@@ -1,83 +1,121 @@
 {% load static %}
-
 <header class="header">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <!-- Добавить ссылку на главную страницу в href="#" -->
-                <a href="{% url 'product:product_list' %}" class="navbar-brand">
-                    <img src="{% static 'img/logo.png' %}" width="38" height="30" class="me-3" alt="Bootstrap">Blade
-                </a>
+  <!-- p-0 отступы справа и слева 0 -->
+  <div class="container p-0">
+    <nav class="navbar navbar-expand-lg navbar-light color-window">
+      <div class="container">
+        <!-- Добавить ссылку на главную страницу в href="#" -->
+        <a href="{% url 'product:product_list' %}" class="navbar-brand">
+          <img src="{% static 'img/logo.png' %}" width="38" height="30" class="me-3" alt="Bootstrap">Blade
+        </a>
 
-                <!-- Кнопка для мобильных устройств -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
-                    <span class="navbar-toggler-icon"></span>
+        <!-- Кнопка для мобильных устройств -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Навигация -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'product:product_list' %}">Каталог</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Контакты</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+
+              <a href="#" class="nav-link"><i class="fa-solid fa-user"></i>
+                <span class="user-name"> {{user.username }}</span></a>
+            </li>
+            <!-- test cart -->
+            <li>
+              <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-cart">test
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
+              <!-- Модальное окно -->
+              <div class="modal fade" id="modal-cart" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <!-- header modal window -->
+                    <div class="modal-header bg-body-secondary">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Ваша корзина</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <!-- content modal window -->
+                    <div class="modal-body">
+                      {% include 'cart/test_cart.html' %}
+                    </div>
+                    <!-- footer modal window -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                      <button type="button" class="btn btn-primary">Сохранить изменения</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Корзина -->
+            <li class="nav-item">
+
+
+              <a href="{% url 'cart:cart_detail' %}" class="nav-link">
+                {% with total_items=cart|length %}
+                <!-- если корзмна не пуста -->
+                {% if total_items > 0 %}
+                <i class="fa-solid fa-cart-shopping"></i> {{ total_items }} =
+                {{ cart.get_total_price }}руб.
+                {% elif not order %}
+                <i class="fa-solid fa-cart-shopping"></i>
+                {% endif %}
+                {% endwith %}
+              </a>
+              <!-- </div> -->
+            </li>
+
+            <!-- Выйти/Войти -->
+            <li class="nav-item">
+              <form method="post" action="{% url 'users:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">
+                  Выйти
                 </button>
-
-                <!-- Навигация -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'product:product_list' %}">Каталог</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Контакты</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">{{ user.username }}</a>
-                        </li>
-                        <!-- Корзина -->
-                        <li class="nav-item">
-                            <!-- <div class="cart"> -->
-
-                            <!-- {{ cart|length }} -->
-
-                            <a href="{% url 'cart:cart_detail' %}" class="nav-link">
-                                {% with total_items=cart|length %}
-                                {% if total_items > 0 %}
-                                В корзина {{ total_items }} ножа на сумму:
-                                {{ cart.get_total_price }}руб.
-                                {% elif not order %}
-                                Корзина
-                                {% endif %}
-                                {% endwith %}
-                            </a>
-                            <!-- </div> -->
-                        </li>
-
-                        <!-- Выйти/Войти -->
-                        <li class="nav-item">
-                            <form method="post" action="{% url 'users:logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-primary" 
-                                
-                                >
-                                  Выйти
-                                </button>
-                              </form>
-                            <!-- <div>
+              </form>
+              <!-- <div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#logoutModal">
                                     Выйти
                                 </button>
                             </div> -->
-                            <!-- Модальное окно -->
-                             
+              <!-- Модальное окно -->
 
 
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a href="{% url 'users:login' %}" class="nav-link">Войти</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="{% url 'users:login' %}" class="nav-link">Войти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link
+                                {% if view_name == 'users:signup' %}
+                                active
+                                {% endif %}" href="{% url 'users:signup' %}">
+                Регистрация
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>

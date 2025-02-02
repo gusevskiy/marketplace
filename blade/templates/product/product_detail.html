@@ -6,45 +6,73 @@
 {{ product.name }}
 {% endblock %}
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
-        {% include "includes/sidebar.html" %}
-        <!-- Основная область для меняющегося контента -->
-        <section class="col-md-9">
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                <div class="product-detail">
-                    <h2>
-                        <a href="{{ product.get_absolute_url }}">
-                            {{ product.category }}
-                        </a>
-                    </h2>
-                    {% if product.images.first %}
-                    {% thumbnail product.images.first.url "400x400" crop="center" as im %}
-                    <a href="{{ product.get_absolute_url }}" style="display: block; text-align: center;">
-                        <img src="{{ im.url }}" alt="{{ product.name }}"
-                            style="max-width: 100%; height: auto; margin: 0 auto;" />
-                    </a>
-                    {% endthumbnail %}
-                    {% else %}
-                    <div
-                        style="display: flex; align-items: center; justify-content: center; width: 100%; height: 200px; background-color: #ccc; border-radius: 5px;">
-                        Нет фото
-                    </div>
-                    {% endif %}
-                    <h1>{{ product.name }}</h1>
-                    <h5>
-                        <p class="price">{{ product.price }} руб.</p>
-                    </h5>
-                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                        {{ cart_product_form }}
-                        {% csrf_token %}
-                        <input type="submit" value="Add to cart">
-                    </form>
-                    <p class="cart-text" style="font-size: 20px; color: #555;">
-                        {{ product.description }}
-                    </p>
+<div class="container mt-3">
+    <!-- <div class="row g-4 column-gap-3 d-flex"> -->
+    <div class="row d-flex">
 
-                    <!-- {{ product.description|linebreaks }} -->
+        <aside class="col-md-3 color-window p-4">
+            <h3>Категории</h3>
+            <ul>
+                <li {% if not category %} class="selected" {% endif %}>
+                    <a href="{% url 'product:product_list' %}">Все ножи</a>
+                </li>
+                {% for c in categories %}
+                <li class="selected">
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <!-- Основная область для меняющегося контента -->
+        <section class="col-md-9 color-window p-4">
+            <div>
+                <h2>
+                    <a href="{{ product.get_absolute_url }}">
+                        {{ product.category }}
+                    </a>
+                </h2>
+                <!-- start corusel -->
+                <div class="container my-carousel">
+                    <div id="carouselProductDetail" class="carousel carousel-dark">
+                        <div class="carousel-inner">
+                            {% for image in product.images.all %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                {% thumbnail image.image "400x400" crop="center" as im %}
+                                <img src="{{ im.url }}" class="d-block mx-auto" alt="{{ product.name }}">
+                                {% endthumbnail %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- кнопка влево -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductDetail"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"><i class="fa-solid fa-caret-right"></i></span>
+                        </button>
+                        <!-- кнопка вправо -->
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProductDetail"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Следующий</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-cols-1 text-center">
+                    <!-- end corusel -->
+                    <div class="product-detail">
+                        <h1>{{ product.name }}</h1>
+                        <h5>
+                            <p class="price">{{ product.price }} руб.</p>
+                        </h5>
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            {{ cart_product_form }}
+                            {% csrf_token %}
+                            <input type="submit" value="Add to cart">
+                        </form>
+                        <p class="cart-text" style="font-size: 20px; color: #555;">
+                            {{ product.description }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
