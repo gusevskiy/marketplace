@@ -39,9 +39,34 @@
               <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-cart">test
                 <i class="fa-solid fa-cart-shopping"></i>
               </a>
+              <!-- Модальное окно -->
+              <div class="modal fade" id="modal-cart" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <!-- header modal window -->
+                    <div class="modal-header bg-body-secondary">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Ваша корзина</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <!-- content modal window -->
+                    <div class="modal-body">
+                      {% include 'cart/test_cart.html' %}
+                    </div>
+                    <!-- footer modal window -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                      <button type="button" class="btn btn-primary">Сохранить изменения</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-              <!-- Корзина -->
+            <!-- Корзина -->
             <li class="nav-item">
+
+
               <a href="{% url 'cart:cart_detail' %}" class="nav-link">
                 {% with total_items=cart|length %}
                 <!-- если корзмна не пуста -->
@@ -53,49 +78,25 @@
                 {% endif %}
                 {% endwith %}
               </a>
+              <!-- </div> -->
             </li>
 
-
-
-            <form method="post" action="{% url 'users:logout' %}">
+            <!-- Выйти/Войти -->
+            <li class="nav-item">
+              <form method="post" action="{% url 'users:logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-primary">
                   Выйти
                 </button>
               </form>
 
-
-            <!-- Если не авторизован -->
-            {% else %}
-            <!-- Выйти/Войти -->
-            <li>
-              <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-authorization">Вочыйти
-                <i class="fa-solid fa-cart-shopping"></i>
-              </a>
               <!-- Модальное окно -->
-              <div class="modal fade" id="modal-authorization" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                  <div class="modal-content">
-                    <!-- header modal window -->
-                    <div class="modal-header bg-body-secondary">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Авторизация</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                    </div>
-                    <!-- content modal window -->
-                    <div class="modal-body">
-                      {% include 'users/login.html' %}
-                    </div>
-                    <!-- footer modal window -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                      <button type="button" class="btn btn-primary">Сохранить изменения</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
+
             </li>
-            <!-- <li class="nav-item">
+            {% else %}
+            <li class="nav-item">
               <a href="{% url 'users:login' %}" class="nav-link">Войти</a>
             </li>
             <li class="nav-item">
@@ -105,7 +106,7 @@
                                 {% endif %}" href="{% url 'users:signup' %}">
                 Регистрация
               </a>
-            </li> -->
+            </li>
             {% endif %}
           </ul>
         </div>
