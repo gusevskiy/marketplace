@@ -18,8 +18,3 @@ class SignUp(CreateView):
     success_url = reverse_lazy('product:product_list')
     template_name = 'users/signup.html'
 
-
-# class CustomLogoutView(LogoutView):
-#     """ Для реализации выхода из аккаунта (тк в django 5 LogoutView не принимает)"""
-#     def post(self, request, *args, **kwargs):
-#         return self.get(request, *args, **kwargs)
