@@ -12,7 +12,8 @@ body {
 }
 
 /* для пришатия footer к низу */
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     display: flex;
@@ -20,7 +21,8 @@ html, body {
 }
 
 main {
-    flex: 1; /* Растягивается, заполняя пространство */
+    flex: 1;
+    /* Растягивается, заполняя пространство */
 }
 
 img {
@@ -144,6 +146,31 @@ aside {
 
 /* End Product cart */
 
+/* Start paginator */
+
+/*цвет текста*/
+.pagination .page-link {
+    color: black;
+}
+
+/* Цвет фона при наведении */
+.pagination .page-item.active .page-link {
+    background-color: #555;
+    border-color: #555;
+    color: white;
+
+}
+
+/* Цвет фона при наведении на ссылку */
+.pagination .page-item .page-link:hover {
+    background-color: #555;
+    border-color: #555;
+    /* Темный фон при наведении */
+    color: white;
+    /* Белый текст при наведении */
+}
+
+/* End paginator */
 
 /* Start footer */
 .footer {

@@ -1,37 +1,62 @@
-{% extends 'base.html' %}
+{% extends 'includes/base_with_sidebar.html' %}
 
+{% load thumbnail %}
 {% block title %}
 {% if category %}{{ category.name }}{% else %}Products{% endif %}
 {% endblock %}
 
-{% block content %}
-<div class="container mt-4">
-  <div class="row d-flex">
+{% block main_content %}
 
-    <aside class="col-md-3 color-window p-4">
-      <h3>Категории</h3>
-      <ul>
-        <li {% if not category %} class="selected" {% endif %}>
-          <a href="{% url 'product:product_list' %}">Все ножи</a>
-        </li>
-        {% for c in categories %}
-        <li class="selected">
-          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </aside>
-    <!-- Основная область для меняющегося контента -->
-    <section class="col-md-9 color-window p-4">
-      <!-- <div class="row row-cols-1 row-cols-md-3 mb-3 text-center"> -->
-      <div class="row">
-        <!-- Карточка товара -->
-        {% include 'product/cycle_products.html' %}
+<div class="row">
+  <!-- Карточки товара -->
+  {% for product in page_obj %}
+  <div class="col-lg-4">
+    <div class="product-card">
+
+      <!-- Изображение продукта -->
+
+      <div class="product-thumb">
+        {% if product.images.first %}
+        <!-- product.images.first.image -> "image" это поле в модели ProductImage -->
+        {% thumbnail product.images.first.image "400x400" crop="center" as im %}
+        <a href="{{ product.get_absolute_url }}">
+          <img src="{{ im.url }}" alt="{{ product.name }}" />
+        </a>
+        {% endthumbnail %}
+        {% else %}
+        <div
+          style="display: flex; align-items: center; justify-content: center; width: 100%; height: 200px; background-color: #ccc; border-radius: 5px;">
+          Нет фото
+        </div>
+        {% endif %}
       </div>
-      <div class="d-flex justify-content-center">
-        {% include 'includes/paginator.html' %}
+
+      <!-- Информация о продукте -->
+      <div class="product-details">
+        <div class="product-name">
+          <h5>{{ product.name }}</a>
+          </h5>
+        </div>
+        <div class="product-bottom-details d-flex justify-content-between">
+          <div class="product-price">
+            <a>{{ product.price }} руб.</a>
+          </div>
+          <div class="product-links">
+            <a href="">
+              <!-- иконка -->
+              <i class="fa-solid fa-cart-plus"></i>
+            </a>
+          </div>
+        </div>
       </div>
+
+    </div>
   </div>
-  </section>
+  {% endfor %}
 </div>
+<div class="d-flex justify-content-center">
+  {% include 'includes/paginator.html' %}
+</div>
+</div>
+
 {% endblock %}

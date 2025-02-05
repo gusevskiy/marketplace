@@ -1,21 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Левая панель -->
-            <aside class="col-md-3">
-                {% block sidebar %}
-                    <p>Здесь может быть меню или информация</p>
-                {% endblock %}
-            </aside>
+<div class="container mt-3">
+    <!-- <div class="row g-4 column-gap-3 d-flex"> -->
+    <div class="row d-flex">
 
-            <!-- Основной контент -->
-            <main class="col-md-9">
-                {% block main_content %}
-                
-                {% endblock %}
-            </main>
-        </div>
+        <!-- Левая панель -->
+        {% include 'includes/sidebar.html' %}
+
+        <!-- Основное окно -->
+        <!-- Основная область для меняющегося контента -->
+        <section class="col-md-9 color-window p-4">
+            {% block main_content %}
+
+            {% endblock %}
+        </section>
     </div>
+</div>
 {% endblock %}
