@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from product.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 
-@require_POST
+
+@login_required
+@require_POST  # этот декоратор разрешает делать только post запрос к этой ф-ии
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
@@ -20,6 +23,7 @@ def cart_add(request, product_id):
     return redirect('cart:cart_detail')
 
 
+@login_required
 @require_POST
 def cart_remove(request, product_id):
     cart = Cart(request)
@@ -28,6 +32,7 @@ def cart_remove(request, product_id):
     return redirect('cart:cart_detail')
 
 
+@login_required
 def cart_detail(request):
     cart = Cart(request)
 

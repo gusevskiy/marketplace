@@ -151,7 +151,12 @@ LOGOUT_REDIRECT_URL = 'product:product_list'
 
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Текст письма прилетает в консоль
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#  подключаем движок filebased.EmailBackend
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# указываем директорию, в которую будут складываться файлы писем
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 
 CELERY_BROKER_URL = 'amqp://gusevskiy:Dreamer3190506@localhost:5672//'

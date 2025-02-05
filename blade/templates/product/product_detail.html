@@ -10,7 +10,7 @@
     <!-- <div class="row g-4 column-gap-3 d-flex"> -->
     <div class="row d-flex">
 
-        <aside class="col-md-3 color-window p-4">
+        <!-- <aside class="col-md-3 color-window p-4">
             <h3>Категории</h3>
             <ul>
                 <li {% if not category %} class="selected" {% endif %}>
@@ -22,7 +22,8 @@
                 </li>
                 {% endfor %}
             </ul>
-        </aside>
+        </aside> -->
+        {% include 'include/sidebar.html' %}
         <!-- Основная область для меняющегося контента -->
         <section class="col-md-9 color-window p-4">
             <div>

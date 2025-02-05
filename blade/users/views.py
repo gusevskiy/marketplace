@@ -1,6 +1,8 @@
 # users/views.py
 # Импортируем CreateView, чтобы создать ему наследника
+from ast import arg
 from django.views.generic import CreateView
+from django.contrib.auth.views import LogoutView
 
 # Функция reverse_lazy позволяет получить URL по параметрам функции path()
 # Берём, тоже пригодится
@@ -15,3 +17,4 @@ class SignUp(CreateView):
     # После успешной регистрации перенаправляем пользователя на главную.
     success_url = reverse_lazy('product:product_list')
     template_name = 'users/signup.html'
+
