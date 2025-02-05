@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-3">
+<div class="container color-window mt-3">
     <!-- <div class="row g-4 column-gap-3 d-flex"> -->
     <div class="row d-flex">
 
         <!-- Левая панель -->
-        {% include 'includes/sidebar.html' %}
-
+        <aside class="col-md-2 sidebar">
+            {% include 'includes/sidebar.html' %}
+        </aside>
         <!-- Основное окно -->
         <!-- Основная область для меняющегося контента -->
-        <section class="col-md-9 color-window p-4">
+        <section class="col-md-10 p-4">
             {% block main_content %}
 
             {% endblock %}

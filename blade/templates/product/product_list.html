@@ -34,18 +34,22 @@
       <!-- Информация о продукте -->
       <div class="product-details">
         <div class="product-name">
-          <h5>{{ product.name }}</a>
-          </h5>
+          <h5>{{ product.name }}</h5>
         </div>
-        <div class="product-bottom-details d-flex justify-content-between">
-          <div class="product-price">
-            <a>{{ product.price }} руб.</a>
-          </div>
-          <div class="product-links">
-            <a href="">
-              <!-- иконка -->
-              <i class="fa-solid fa-cart-plus"></i>
-            </a>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-xs-6 product-price">
+              <span>{{ product.price }} руб.</span>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-6 product-links">
+              <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-flex align-items-center">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary cart-add-button ms-2">
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
