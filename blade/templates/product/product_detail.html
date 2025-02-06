@@ -43,14 +43,26 @@
         <!-- end corusel -->
         <div class="product-detail">
             <h1>{{ product.name }}</h1>
-            <h5>
-                <p class="price">{{ product.price }} руб.</p>
-            </h5>
-            <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ cart_product_form }}
-                {% csrf_token %}
-                <input type="submit" value="Add to cart">
-            </form>
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+
+                  <div class="col-sm-6 col-md-6 col-xs-6 product-price">
+                    <!-- &nbsp; эти каракули для предотвращения переносатекста -->
+                    <div>Цена&nbsp;{{ product.price }}&nbsp;руб.</div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-6 col-xs-6 product-links">
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-flex align-items-center">
+                      {{ cart_product_form }}
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-outline-secondary cart-add-button ms-2">
+                        <i class="fa-solid fa-cart-plus"></i>
+                      </button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
             <p class="cart-text" style="font-size: 20px; color: #555;">
                 {{ product.description }}
             </p>
