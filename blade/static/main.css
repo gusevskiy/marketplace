@@ -11,16 +11,11 @@ body {
     min-width: 320px;
 }
 
-/* для пришатия footer к низу */
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
+
 
 main {
-    flex: 1; /* Растягивается, заполняя пространство */
+    flex: 1;
+    /* Растягивается, заполняя пространство */
 }
 
 img {
@@ -28,14 +23,20 @@ img {
     height: auto;
 }
 
-
+/* Start Все ссылки */
 a {
-    color: #111;
+    color: black;
 }
 
+/* при наведении */
 a:hover {
     color: #555;
 }
+
+/* End  Все ссылки */
+
+
+/* ----------------------------------------------- */
 
 /* Start header */
 .navbar-light .navbar-nav .nav-link {
@@ -64,19 +65,57 @@ a:hover {
 }
 
 /* End header */
+/* ----------------------------------------------- */
 
+/* Цвет фона всех областей*/
 .color-window {
-    background-color: #f0f0f0;
-    /* Цвет фона всех областей*/
+    background-color: white;
 }
 
 /* Start aside */
-aside {
+/* aside {
     border-left: #fff;
-}
+} */
 
 /* End aside */
+/* ----------------------------------------------- */
+/* Start product_list */
+/* Стили для кнопки только в карточках товара */
+.cart-add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    /* Регулируем ширину и высоту кнопки */
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    /* Радиус скругления */
+}
 
+.cart-add-button i {
+    font-size: 18px;
+    /* Размер иконки */
+}
+
+.cart-add-button:hover {
+    background-color: #e2e6ea;
+    /* Цвет фона при наведении */
+}
+
+
+/* End product_list */
+
+/* ----------------------------------------------- */
+/* Start Product_detail */
+
+
+
+
+/* End Product_detail */
+
+
+/* ----------------------------------------------- */
 
 /* Start carousel */
 .my-carousel {
@@ -93,11 +132,12 @@ aside {
 }
 
 /* End carousel */
-
+/* ----------------------------------------------- */
 /* Start Product cart */
 .product-card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
     transition: all .7s;
+    border-radius: 20px;
 }
 
 .product-card:hover {
@@ -138,14 +178,50 @@ aside {
 }
 
 .product-links {
-    font-size: 20px;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* End Product cart */
+/* ----------------------------------------------- */
+/* Start paginator */
 
+/*цвет текста*/
+.pagination .page-link {
+    color: black;
+}
+
+/* Цвет фона при наведении */
+.pagination .page-item.active .page-link {
+    background-color: #555;
+    border-color: #555;
+    color: white;
+
+}
+
+/* Цвет фона при наведении на ссылку */
+.pagination .page-item .page-link:hover {
+    background-color: #555;
+    border-color: #555;
+    /* Темный фон при наведении */
+    color: white;
+    /* Белый текст при наведении */
+}
+
+/* End paginator */
+/* ----------------------------------------------- */
 
 /* Start footer */
+/* для пришатия footer к низу */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .footer {
     background-color: #555;
 }
@@ -186,3 +262,4 @@ aside {
 }
 
 /* End footer */
+/* ----------------------------------------------- */

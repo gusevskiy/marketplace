@@ -42,6 +42,12 @@ https://docs.fontawesome.com/web/use-with/python-django
 note:
 1) подпись в footer.html
 2) Корзина
+3) Валидация вводимых значений
+4) Статичные страницы для футера [ссылка](https://practicum.yandex.ru/learn/backend-developer/courses/1b78b2c9-df6f-4349-a831-7ef978dd092f/sprints/72332/topics/03b3895d-0391-4b6f-8247-8e6f5be17568/lessons/5679e3c2-82aa-4d36-b184-dfa794ed3a08/)
+5) Добавление в корзину из product_list с карточек
+6) одну кнопку оставить войти может убрать слово регистрация
+7) количество товаров в корзине на значке (как у ozon)
+8) добавлениев корзину из карточек, без перехода к товару
 
 
 
