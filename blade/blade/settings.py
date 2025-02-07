@@ -1,7 +1,9 @@
 import os
-
+from dotenv import load_dotenv
 from pathlib import Path
 
+
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,12 +17,17 @@ SECRET_KEY = 'django-insecure-d^y@9-3#2@ry#8!x@qkdat7+y^49pk3u0dcpa_7=7buvby4lrh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'ljp833z9drv3.share.zrok.io', 'localhost', '0.0.0.0']
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.zrok.io",
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'payment.apps.PaymentConfig',
     'product.apps.ProductConfig',
     'orders.apps.OrdersConfig',
     'core.apps.CoreConfig',
@@ -162,3 +169,8 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 CELERY_BROKER_URL = 'amqp://gusevskiy:Dreamer3190506@localhost:5672//'
 
 broker_connection_retry_on_startup = True
+
+
+# Ю-Касса
+YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')
+YOOKASSA_SHOP_ID = os.getenv('YOOKASSA_SHOP_ID')
