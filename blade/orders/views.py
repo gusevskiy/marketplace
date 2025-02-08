@@ -7,7 +7,7 @@ from cart.cart import Cart
 from django.urls import reverse
 
 
-# @login_required
+@login_required
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':

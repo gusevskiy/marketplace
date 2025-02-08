@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.http import JsonResponse
 from yookassa import Configuration, Payment
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Payment as PaymentModel
 from .models import Order
 import uuid
@@ -14,10 +15,11 @@ Configuration.account_id = settings.YOOKASSA_SHOP_ID
 Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
 
 
+
+@login_required
 def create_payment(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     payment_id = str(uuid.uuid4())
-    print(f"Order {order.id} total cost: {order.get_total_cost()}")
     payment = Payment.create({
         "amount": {
             "value": str(order.get_total_cost()),  # Сумма заказа
@@ -25,7 +27,7 @@ def create_payment(request, order_id):
         },
         "confirmation": {
             "type": "redirect",
-            "return_url": "https://your-site.com/payment-success"
+            "return_url": "https://g79cud29d6bu.share.zrok.io/payment/success/"
         },
         "capture": True,
         "description": f"Order {order.id}",
@@ -61,3 +63,7 @@ def webhook(request):
         return JsonResponse({"status": "ok"})
     except Payment.DoesNotExist:
         return JsonResponse({"error": "Payment not found"}, status=404)
+    
+
+def payment_success(request):
+    return render(request, "payment/success.html")
