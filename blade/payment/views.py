@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from yookassa import Configuration, Payment
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from .models import Payment as PaymentModel
 from .models import Order
 import uuid
@@ -17,10 +17,10 @@ Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
 def create_payment(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     payment_id = str(uuid.uuid4())
-
+    print(f"Order {order.id} total cost: {order.get_total_cost()}")
     payment = Payment.create({
         "amount": {
-            "value": str(order.total_price),  # Сумма заказа
+            "value": str(order.get_total_cost()),  # Сумма заказа
             "currency": "RUB"
         },
         "confirmation": {
@@ -37,10 +37,11 @@ def create_payment(request, order_id):
         order=order,
         payment_id=payment.id,
         status=payment.status,
-        amount=order.total_price,
+        amount=order.get_total_cost(),
     )
 
-    return JsonResponse({"confirmation_url": payment.confirmation.confirmation_url})
+    return redirect(payment.confirmation.confirmation_url)
+    # return JsonResponse({"confirmation_url": payment.confirmation.confirmation_url})
 
 @csrf_exempt
 def webhook(request):

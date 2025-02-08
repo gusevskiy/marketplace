@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-d^y@9-3#2@ry#8!x@qkdat7+y^49pk3u0dcpa_7=7buvby4lrh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'ljp833z9drv3.share.zrok.io', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['127.0.0.1', '*', 'localhost', '0.0.0.0']
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.zrok.io",

@@ -14,6 +14,7 @@ def order_create(request):
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
+            print(cart.__dict__)
             for item in cart:
                 OrderItem.objects.create(
                     product=item['product'],
@@ -26,7 +27,7 @@ def order_create(request):
             # задать заказ в сеансе
             request.session['order_id'] = order.id
             # перенаправить к платежу
-            return redirect(reverse('payment:process', args=[order.id]))
+            return redirect(reverse('payment:create_payment', args=[order.id]))
             # return render(request, 'orders/created.html', {'order': order})
     else:
         form = OrderCreateForm()
