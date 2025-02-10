@@ -68,7 +68,7 @@ urlpatterns = [
     ),
 
     path(
-        'privacy-policy', TemplateView.as_view(
+        'privacy-policy', views.PrivacyPolicyView.as_view(
             template_name='users/privacy.html'
         ), name='privacy-policy'
     ),
