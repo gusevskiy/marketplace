@@ -40,7 +40,18 @@
                             <span class="required text-danger">*</span>
                             {% endif %}
                         </label>
+
+                        {% if field.field.widget.input_type == "checkbox" %}
+                        <div class="form-check">
+                            {{ field }}
+                            <label class="form-check-label" for="{{ field.id_for_label }}">
+                                Я соглашаюсь с <a href="{% url 'users:privacy-policy' %}">обработкой персональных данных</a>
+                            </label>
+                        </div>
+                        {% else %}
                         {{ field|addclass:'form-control' }}
+                        {% endif %}
+                        
                         {% if field.help_text %}
                         <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
                             {{ field.help_text|safe }}

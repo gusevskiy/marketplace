@@ -35,9 +35,8 @@
             <!-- Рядо с иконкой выводим имя пользователя -->
             <li class="nav-item">
               <a href="#" class="nav-link"><i class="fa-solid fa-user"></i>
-                <span class="user-name"> {{user.username }}</span></a>
+                <span class="user-name"> {{user.first_name }}</span></a>
             </li>
-
             <!-- Корзина -->
             <li class="nav-item">
               <a href="{% url 'cart:cart_detail' %}" class="nav-link">

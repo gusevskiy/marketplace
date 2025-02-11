@@ -1,0 +1,13 @@
+{% extends "includes/base_with_sidebar.html" %}
+
+{% block title %}Обработка персональных данных{% endblock %}
+{% block main_content %}
+
+<h1>Политика конфиденциальности</h1>
+<div class="policy-text">
+    {{ privacy_policy_text|safe }}
+
+    Дата обновления: {{ last_modified }}
+</div>
+
+{% endblock %}

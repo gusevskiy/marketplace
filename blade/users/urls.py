@@ -66,4 +66,10 @@ urlpatterns = [
             template_name='users/password_reset_complete.html'
         ), name='password_reset_complete'
     ),
+
+    path(
+        'privacy-policy', views.PrivacyPolicyView.as_view(
+            template_name='users/privacy.html'
+        ), name='privacy-policy'
+    ),
 ]
