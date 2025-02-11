@@ -175,3 +175,9 @@ broker_connection_retry_on_startup = True
 # Ю-Касса
 YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')
 YOOKASSA_SHOP_ID = os.getenv('YOOKASSA_SHOP_ID')
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'users.authentication.EmailAuthBackend',
+]

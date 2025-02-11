@@ -30,7 +30,7 @@ class SignUp(CreateView):
     def form_valid(self, form):
         result = super().form_valid(form)
         cd = form.cleaned_data
-        user = authenticate(username=cd['username'],
+        user = authenticate(username=cd['email'],
         password=cd['password1'])
         login(self.request, user)
         return result

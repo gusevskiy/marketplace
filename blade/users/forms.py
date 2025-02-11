@@ -17,7 +17,7 @@ class CreationForm(UserCreationForm):
         # укажем модель, с которой связана создаваемая форма
         model = CustomUser
         # укажем, какие поля должны быть видны в форме и в каком порядке
-        fields = ('username', 'first_name', 'last_name', 'email', 'agree_to_privacy')
+        fields = ('first_name', 'last_name', 'email', 'agree_to_privacy')
 
     def save(self, commit=True):
         user = super().save(commit=False)
