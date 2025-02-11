@@ -1,0 +1,38 @@
+{% load thumbnail %}
+{% if cart %}
+<div class="container">
+  <div class="row">
+    <h1>Your Shopping Cart</h1>
+    {% for item in cart %}
+    {% with product=item.product %}
+    <div class="row p-3" style="border: 1px solid #ccc; background-color: white; margin: 2px;">
+      <div class="col-md-2">
+        {% if product.images.first %}
+        {% thumbnail product.images.first.url "100x100" crop="center" as im %}
+        <a href="{{ product.get_absolute_url }}" style="display: block; text-align: center;">
+          <img src="{{ im.url }}" alt="{{ item.name }}" style="max-width: 100%; height: auto; margin: 0 auto;" />
+        </a>
+        {% endthumbnail %}
+        {% else %}
+        <div
+          style="display: flex; align-items: center; justify-content: center; width: 100%; height: 200px; background-color: #ccc; border-radius: 5px;">
+          Нет фото
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-md-2">{{ product.name }}</div>
+      <div class="col-md-2">Цена: {{ item.total_price }}</div>
+      <div class="col-md-2">Количество: {{ item.quantity }}</div>
+      <div class="col-md-2"><button class="btn-remove">Удалить</button></div>
+    </div>
+    {% endwith %}
+    {% endfor %}
+    <p class="text-right">
+      <a href="{% url 'product:product_list' %}" class="button light">Continue Shopping</a>
+      <a href="#" class="button">Checkout</a>
+    </p>
+  </div>
+</div>
+{% else %}
+<p>Your shopping cart is empty.</p>
+{% endif %}
