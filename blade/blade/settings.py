@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d^y@9-3#2@ry#8!x@qkdat7+y^49pk3u0dcpa_7=7buvby4lrh'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,7 +25,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-# Application definition
 
 INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
@@ -63,7 +62,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATES_DIR],
-        # после дебага изменить на True
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,20 +74,9 @@ TEMPLATES = [
                 # Найди в корне проекта папку core/, в ней - папку context_processors/, там - файл year.py, а в этом файле - функцию year() Словарь, который она возвращает, добавь на все страницы проекта.
                 'core.context_processors.year.year'
             ],
-            # после дебага удалить
-            # 'loaders': [
-            #     'django.template.loaders.filesystem.Loader',
-            #     'django.template.loaders.app_directories.Loader',
-            # ],
-            # # после дебага удалить
-            # 'debug': True
         },
     },
 ]
-
-# # после дебага удалить
-# THUMBNAIL_DEBUG = True
-# THUMBNAIL_CACHE = 'default'
 
 
 WSGI_APPLICATION = 'blade.wsgi.application'
