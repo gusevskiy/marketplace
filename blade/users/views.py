@@ -6,7 +6,7 @@ from django.contrib.auth.views import LogoutView
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 import os
-from django.contrib.auth import login, authenticate # Импортируем функцию login
+from django.contrib.auth import login, authenticate  # Импортируем функцию login
 from datetime import datetime
 import markdown
 from django.conf import settings
@@ -30,10 +30,10 @@ class SignUp(CreateView):
     def form_valid(self, form):
         result = super().form_valid(form)
         cd = form.cleaned_data
-        user = authenticate(username=cd['email'],
-        password=cd['password1'])
+        user = authenticate(username=cd['email'], password=cd['password1'])
         login(self.request, user)
         return result
+
 
 class PrivacyPolicyView(TemplateView):
     """представление policy"""
@@ -46,13 +46,14 @@ class PrivacyPolicyView(TemplateView):
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 context['privacy_policy_text'] = markdown.markdown(f.read())
-            
+
             # Получаем дату последнего изменения файла
             last_modified_time = os.path.getmtime(file_path)
-            context['last_modified'] = datetime.fromtimestamp(last_modified_time).strftime('%d %B %Y, %H:%M')
+            context['last_modified'] = datetime.fromtimestamp(
+                last_modified_time).strftime('%d %B %Y, %H:%M')
         except FileNotFoundError:
-            context['privacy_policy_text'] = "<p>Текст согласия временно недоступен.</p>"
+            context[
+                'privacy_policy_text'] = "<p>Текст согласия временно недоступен.</p>"
             context['last_modified'] = None
 
         return context
-

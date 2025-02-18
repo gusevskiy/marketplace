@@ -2,11 +2,9 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -24,7 +22,6 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
-
 
 INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
@@ -78,9 +75,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'blade.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -92,25 +87,27 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -123,13 +120,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -138,7 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'product:product_list'
@@ -153,16 +148,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # указываем директорию, в которую будут складываться файлы писем
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
-
 CELERY_BROKER_URL = 'amqp://gusevskiy:Dreamer3190506@localhost:5672//'
 
 broker_connection_retry_on_startup = True
 
-
 # Ю-Касса
 YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')
 YOOKASSA_SHOP_ID = os.getenv('YOOKASSA_SHOP_ID')
-
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

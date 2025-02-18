@@ -1,6 +1,5 @@
 from django import forms
 
-
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 11)]
 
 
@@ -10,8 +9,6 @@ class CartAddProductForm(forms.Form):
         coerce=int,
         label=""  # Это для того чтоб убрать слово "Quantity" из формы.
     )
-    override = forms.BooleanField(
-        required=False,
-        initial=False,
-        widget=forms.HiddenInput
-    )
+    override = forms.BooleanField(required=False,
+                                  initial=False,
+                                  widget=forms.HiddenInput)

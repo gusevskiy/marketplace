@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 class EmailAuthBackend:
     """Аунтентифицировать посредством адреса эелектронной почты"""
+
     def authenticate(self, request, username=None, password=None):
         try:
             user = User.objects.get(email=username)
@@ -11,7 +12,7 @@ class EmailAuthBackend:
             return None
         except (User.DoesNotExist, User.MultipleObjectsReturned):
             return None
-        
+
     def get_user(self, user_id):
         try:
             return User.objects.get(pk=user_id)

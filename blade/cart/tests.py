@@ -7,6 +7,7 @@ from django.conf import settings
 
 
 class CartTests(TestCase):
+
     def setUp(self):
         """Настройка тестовых данных."""
         # Создаем категорию с id=1

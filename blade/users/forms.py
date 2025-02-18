@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from users.models import CustomUser
 
 
-
 #  создадим собственный класс для формы регистрации
 #  сделаем его наследником предустановленного класса UserCreationForm
 class CreationForm(UserCreationForm):
@@ -11,8 +10,11 @@ class CreationForm(UserCreationForm):
         required=True,
         widget=forms.CheckboxInput(),
         label='Согласие с обработкой персональных данных',
-        error_messages={'required': 'Вы должны согласиться с обработкой персональных данных.'}
-    )
+        error_messages={
+            'required':
+            'Вы должны согласиться с обработкой персональных данных.'
+        })
+
     class Meta(UserCreationForm.Meta):
         # укажем модель, с которой связана создаваемая форма
         model = CustomUser

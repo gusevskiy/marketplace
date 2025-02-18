@@ -4,6 +4,7 @@ from django.utils.timezone import now
 
 
 class CustomUserManager(BaseUserManager):
+
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError("У пользователя должен быть email")
@@ -20,7 +21,8 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_staff") is not True:
             raise ValueError("Суперпользователь должен иметь is_staff=True.")
         if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Суперпользователь должен иметь is_superuser=True.")
+            raise ValueError(
+                "Суперпользователь должен иметь is_superuser=True.")
 
         return self.create_user(email, password, **extra_fields)
 
@@ -33,17 +35,11 @@ class CustomUser(AbstractUser):
         unique=True,
     )
 
-    first_name = models.CharField(
-        verbose_name="Имя",
-        max_length=150
-    )
-    last_name = models.CharField(
-        verbose_name="Фамилия",
-        max_length=150
-    )
+    first_name = models.CharField(verbose_name="Имя", max_length=150)
+    last_name = models.CharField(verbose_name="Фамилия", max_length=150)
 
     agreed_to_privacy = models.BooleanField(default=False)
-    consent_data  = models.DateTimeField(default=now)
+    consent_data = models.DateTimeField(default=now)
 
     USERNAME_FIELD = 'email'  # Теперь логинимся по email
     REQUIRED_FIELDS = ["first_name", "last_name"]

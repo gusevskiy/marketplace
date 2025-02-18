@@ -1,7 +1,6 @@
 import os
 from celery import Celery
 
-
 # Задать стандартный модуль настроек Django
 # для программы 'celery'
 

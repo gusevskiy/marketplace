@@ -9,6 +9,7 @@ class Command(BaseCommand):
     загрузить данные командой
     python manage.py load_product
     """
+
     def handle(self, *args, **kwargs):
         # csv_file_path = r"C:\DEVELOP\marketplace\blade\data\blade.csv"
         csv_file_path = r"/home/gusevskiy/Develop/marketplace/blade/data/blade.csv"
@@ -16,10 +17,7 @@ class Command(BaseCommand):
         with open(csv_file_path, mode="r", encoding="utf-8-sig") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             self.stdout.write(
-                self.style.WARNING(
-                    f"Заголовки CSV: {csv_reader.fieldnames}"
-                )
-            )
+                self.style.WARNING(f"Заголовки CSV: {csv_reader.fieldnames}"))
             for row in csv_reader:
                 # Отладочный вывод строки
                 self.stdout.write(self.style.NOTICE(f"Читаем строку: {row}"))

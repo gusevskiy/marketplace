@@ -16,12 +16,10 @@ def order_create(request):
             order = form.save()
             print(cart.__dict__)
             for item in cart:
-                OrderItem.objects.create(
-                    product=item['product'],
-                    order=order,
-                    price=item['price'],
-                    quantity=item['quantity']
-                )
+                OrderItem.objects.create(product=item['product'],
+                                         order=order,
+                                         price=item['price'],
+                                         quantity=item['quantity'])
             cart.clear()
             order_created.delay(order.id)
             # задать заказ в сеансе
@@ -31,4 +29,7 @@ def order_create(request):
             # return render(request, 'orders/created.html', {'order': order})
     else:
         form = OrderCreateForm()
-    return render(request, 'orders/order/create.html', {'cart': cart, 'form': form})
+    return render(request, 'orders/order/create.html', {
+        'cart': cart,
+        'form': form
+    })

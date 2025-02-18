@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
 from django.template import loader
 from django.http import HttpResponse
-from .models import Product, Category,  ProductImage
+from .models import Product, Category, ProductImage
 from cart.forms import CartAddProductForm
 
 
@@ -42,9 +42,7 @@ def product_detail(request, id, slug):
     в URL-адрес еще включается slug, чтобы формировать дружественные для
     поисковой оптимизации URL-адреса товаров.
     """
-    product = get_object_or_404(
-        Product, id=id, slug=slug
-    )
+    product = get_object_or_404(Product, id=id, slug=slug)
     images = product.images.all()
     cart_product_form = CartAddProductForm()
     content = {

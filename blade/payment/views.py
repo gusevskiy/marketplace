@@ -11,11 +11,8 @@ from .models import Order
 import uuid
 import json
 
-
-
 Configuration.account_id = settings.YOOKASSA_SHOP_ID
 Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
-
 
 
 @login_required
@@ -24,19 +21,23 @@ def create_payment(request, order_id):
     payment_id = str(uuid.uuid4())
 
     try:
-        payment = Payment.create({
-            "amount": {
-                "value": str(order.get_total_cost()),  # Сумма заказа
-                "currency": "RUB"
+        payment = Payment.create(
+            {
+                "amount": {
+                    "value": str(order.get_total_cost()),  # Сумма заказа
+                    "currency": "RUB"
+                },
+                "confirmation": {
+                    "type":
+                    "redirect",
+                    "return_url":
+                    request.build_absolute_uri(
+                        reverse("product:product_list")),
+                },
+                "capture": True,
+                "description": f"Order {order.id}",
             },
-            "confirmation": {
-                "type": "redirect",
-                "return_url": request.build_absolute_uri(reverse("product:product_list")),
-            },
-            "capture": True,
-            "description": f"Order {order.id}",
-        }, payment_id)
-
+            payment_id)
 
         # Сохраняем платеж в БД
         PaymentModel.objects.create(
@@ -80,10 +81,11 @@ def webhook(request):
         return JsonResponse({"status": "ok"})
     except PaymentModel.DoesNotExist:
         return JsonResponse({"error": "Payment not found"}, status=404)
-    
+
 
 def payment_success(request):
     return render(request, "payment/success.html")
+
 
 def payment_cancel(request):
     # Шаблон для отмены оплаты
