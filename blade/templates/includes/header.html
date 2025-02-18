@@ -13,19 +13,19 @@
 
         <!-- Навигация -->
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
             <!-- Логотип -->
             <li class="nav-item">
-              <a href="{% url 'product:product_list' %}" class="nav-link">
-                <img src="{% static 'img/main_logo.png' %}" width="38" height="30" class="me-3" alt="Bootstrap">Blade
+              <a href="{% url 'product:product_list' %}" class="nav-link logo">
+                Blade<br><small class="text-center">магазин ножей</small>
               </a>
             </li>
             <!-- каталог -->
-            <li class="nav-item">
+            <li class="nav-item top-menu">
               <a class="nav-link" href="{% url 'product:product_list' %}">Каталог</a>
             </li>
             <!-- Контакты -->
-            <li class="nav-item">
+            <li class="nav-item top-menu">
               <a class="nav-link" href="#">Контакты</a>
             </li>
           </ul>
@@ -71,7 +71,7 @@
                 <i class="fa-solid fa-right-to-bracket"></i></a>
             </li>
 
-            <!-- Регистрация -->
+            <!-- Регистрация
             <li class="nav-item">
               <a class="nav-link
                                 {% if view_name == 'users:signup' %}
@@ -79,7 +79,7 @@
                                 {% endif %}" href="{% url 'users:signup' %}">
                 Регистрация
               </a>
-            </li>
+            </li> -->
             {% endif %}
           </ul>
         </div>

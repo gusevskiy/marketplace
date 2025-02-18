@@ -1,5 +1,3 @@
-# users/views.py
-# Импортируем CreateView, чтобы создать ему наследника
 from ast import arg
 from django.views.generic import CreateView
 from django.contrib.auth.views import LogoutView

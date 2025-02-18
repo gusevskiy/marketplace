@@ -72,7 +72,7 @@ https://tailwindcss.com/
 # bootstrap
 https://getbootstrap.su/  # на русском 
 https://getbootstrap.su/docs/5.3/utilities/background/  # цвета
-
+https://getbootstrap.su/docs/5.3/utilities/flex/  # центрирование
 # расшифровка классов
 https://getbootstrap.com/docs/5.3/utilities/spacing/
 ## Шрифты google

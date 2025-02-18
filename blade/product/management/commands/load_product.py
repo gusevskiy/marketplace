@@ -11,8 +11,8 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **kwargs):
-        # csv_file_path = r"C:\DEVELOP\marketplace\blade\data\blade.csv"
-        csv_file_path = r"/home/gusevskiy/Develop/marketplace/blade/data/blade.csv"
+        csv_file_path = r"C:\DEVELOP\marketplace\blade\data\blade.csv"
+        # csv_file_path = r"/home/gusevskiy/Develop/marketplace/blade/data/blade.csv"
         self.stdout.write(self.style.WARNING("Старт команды"))
         with open(csv_file_path, mode="r", encoding="utf-8-sig") as csv_file:
             csv_reader = csv.DictReader(csv_file)

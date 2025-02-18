@@ -39,13 +39,63 @@ a:hover {
 /* ----------------------------------------------- */
 
 /* Start header */
+
+.logo {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(45deg, #131212, #4d4948, #131212);
+    border-radius: 10px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(135deg, #ff7f50, #000); */
+    z-index: -1;
+    transform: skewX(-20deg);
+    transition: transform 0.3s ease;
+}
+
+.logo small {
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    /* Мелкий текст */
+    display: block;
+    margin-top: -5px;
+    /* Приближаем к основному тексту */
+    color: #2c2b2b;
+    /* Серый цвет для контраста */
+}
+
+/* .logo:hover::before {
+    transform: skewX(-20deg) scale(1.1);
+} */
+
+/* .logo:hover {
+    color: #fff;
+    background: linear-gradient(45deg, #72706f, #4e4a4a, #7e7b7a);
+} */
+
 .navbar-light .navbar-nav .nav-link {
     color: #111;
     font-weight: 500;
     text-transform: uppercase;
 }
 
-.top-menu li a::after {
+.top-menu a::after {
     content: '';
     display: block;
     width: 100%;
@@ -56,7 +106,7 @@ a:hover {
 
 }
 
-.top-menu li a:hover:after {
+.top-menu a:hover:after {
     transform: scale(1);
 }
 

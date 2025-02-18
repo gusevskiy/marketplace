@@ -9,7 +9,10 @@ class Command(BaseCommand):
     загрузить тестовые данные, доп параметром указать путь к папке с фотографиями
     название фотографии 1.jpg привязывается к id=1 и т.д.
     
+    linux
     python manage.py load_images /mnt/c/Users/SuperBest/Pictures/ножи/
+    windows
+    python manage.py load_images C:\\Users\\SuperBest\\Pictures\\ножи
     """
     help = "Загрузка тестовых изображений и привязка их к продуктам"
 
