@@ -1,0 +1,4 @@
+<!-- templates/cart/cart_total.html -->
+<span id="cart-total" class="top-0 start-100 translate-middle badge rounded-pill bg-danger {% if cart|length == 0 %}d-none{% endif %}">
+    {{ cart|length }}
+</span>

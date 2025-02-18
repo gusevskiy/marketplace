@@ -1,3 +1,4 @@
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -7,7 +8,7 @@ from .forms import CartAddProductForm
 
 
 @login_required
-@require_POST  # этот декоратор разрешает делать только post запрос к этой ф-ии
+@require_POST  # post запрос к этой ф-ии
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
@@ -17,7 +18,15 @@ def cart_add(request, product_id):
         cart.add(product=product,
                  quantity=cd['quantity'],
                  override_quantity=cd['override'])
-    return redirect('cart:cart_detail')
+        
+        # Если запрос через HTMX, возвращаем частичный шаблон
+        if request.htmx:
+            return render(request, 'cart/cart_total.html', {'cart': cart})
+        else:
+            # Для обычных запросов делаем редирект
+            return redirect('cart:cart_detail')
+    
+    return HttpResponse(status=400)
 
 
 @login_required
@@ -26,7 +35,10 @@ def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
-    return redirect('cart:cart_detail')
+    if request.htmx:
+        return render(request, 'cart/cart_total.html', {'cart': cart})
+    else:
+        return redirect('cart:cart_detail')
 
 
 @login_required

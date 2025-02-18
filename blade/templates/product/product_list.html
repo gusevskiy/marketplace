@@ -42,13 +42,17 @@
               <span>{{ product.price }}&nbsp;руб.</span>
             </div>
             <div class="col-sm-6 col-md-6 col-xs-6 product-links">
-              <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-flex align-items-center">
+              <!-- форма -->
+              <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#cart-total" hx-swap="outerHTML"
+                class="d-flex align-items-center">
                 {{ cart_product_form }}
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-secondary cart-add-button ms-2">
+                  <!-- иконка -->
                   <i class="fa-solid fa-cart-plus"></i>
                 </button>
               </form>
+
             </div>
           </div>
         </div>

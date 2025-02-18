@@ -29,7 +29,9 @@ Your shopping cart
             <div class="col-md-2 ">{{ product.name }}</div>
             <div class="col-md-2">Цена: {{ item.price }}</div>
             <div class="col-md-2">
-                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                <form hx-post="{% url 'cart:cart_add' product.id %}" 
+                      hx-target="#cart-detail" 
+                      hx-swap="outerHTML">
                     {{ item.update_quantity_form.quantity }}
                     {{ item.update_quantity_form.override }}
                     <input type="submit" value="Update">

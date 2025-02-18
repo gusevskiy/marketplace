@@ -39,16 +39,12 @@
             </li>
             <!-- Корзина -->
             <li class="nav-item">
-              <a href="{% url 'cart:cart_detail' %}" class="nav-link">
-                {% with total_items=cart|length %}
-                <!-- если корзмна не пуста -->
-                {% if total_items > 0 %}
-                <i class="fa-solid fa-cart-shopping"></i> {{ total_items }} =
-                {{ cart.get_total_price }}руб.
-                {% elif not order %}
-                <i class="fa-solid fa-cart-shopping"></i>
-                {% endif %}
-                {% endwith %}
+              <a href="{% url 'cart:cart_detail' %}" class="nav-link d-flex align-items-center">
+                <i class="fa-solid fa-cart-shopping me-2"></i>
+                <span id="cart-total"
+                  class="top-0 start-100 translate-middle badge rounded-pill bg-danger {% if cart|length == 0 %}d-none{% endif %}">
+                  {{ cart|length }}
+                </span>
               </a>
             </li>
 
@@ -70,16 +66,6 @@
                 <!-- иконка -->
                 <i class="fa-solid fa-right-to-bracket"></i></a>
             </li>
-
-            <!-- Регистрация
-            <li class="nav-item">
-              <a class="nav-link
-                                {% if view_name == 'users:signup' %}
-                                active
-                                {% endif %}" href="{% url 'users:signup' %}">
-                Регистрация
-              </a>
-            </li> -->
             {% endif %}
           </ul>
         </div>
