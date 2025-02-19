@@ -156,8 +156,11 @@ a:hover {
 } */
 
 /* End aside */
+
 /* ----------------------------------------------- */
+
 /* Start product_list */
+
 /* Стили для кнопки только в карточках товара */
 .cart-add-button {
     display: flex;
@@ -181,6 +184,31 @@ a:hover {
     /* Цвет фона при наведении */
 }
 
+.product-price {
+    font-size: 18px;
+    color: black;
+    font-size: 600;
+    /* Активируем Flexbox */
+    display: flex;
+    /* Центрируем по вертикали */
+    align-items: center;
+    /* Убираем отступ слева */
+    padding-left: 0;
+}
+
+.product-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Убираем отступ слева */
+    padding-right: 0;
+    /* text-align: right; */
+}
+
+.product-links form {
+    margin: 0;
+    padding: 0;
+}
 
 /* End product_list */
 
@@ -249,17 +277,9 @@ a:hover {
 
 }
 
-.product-price {
-    font-size: 18px;
-    color: black;
-    font-size: 600;
-}
 
-.product-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
+
 
 /* End Product cart */
 /* ----------------------------------------------- */

@@ -8,67 +8,65 @@
 {% block main_content %}
 
 <div>
-    <h2>
-        <a href="{{ product.get_absolute_url }}">
-            {{ product.category }}
-        </a>
-    </h2>
-    <!-- start corusel -->
-    <div class="container my-carousel">
-        <div id="carouselProductDetail" class="carousel carousel-dark">
-            <div class="carousel-inner">
-                {% for image in product.images.all %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    {% thumbnail image.image "400x400" crop="center" as im %}
-                    <img src="{{ im.url }}" class="d-block mx-auto" alt="{{ product.name }}">
-                    {% endthumbnail %}
-                </div>
-                {% endfor %}
-            </div>
-            <!-- кнопка влево -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductDetail"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden"><i class="fa-solid fa-caret-right"></i></span>
-            </button>
-            <!-- кнопка вправо -->
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProductDetail"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Следующий</span>
-            </button>
+  <h2>
+    <a href="{{ product.get_absolute_url }}">
+      {{ product.category }}
+    </a>
+  </h2>
+  <!-- start corusel -->
+  <div class="container my-carousel">
+    <div id="carouselProductDetail" class="carousel carousel-dark">
+      <div class="carousel-inner">
+        {% for image in product.images.all %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          {% thumbnail image.image "400x400" crop="center" as im %}
+          <img src="{{ im.url }}" class="d-block mx-auto" alt="{{ product.name }}">
+          {% endthumbnail %}
         </div>
+        {% endfor %}
+      </div>
+      <!-- кнопка влево -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductDetail" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden"><i class="fa-solid fa-caret-right"></i></span>
+      </button>
+      <!-- кнопка вправо -->
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselProductDetail" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующий</span>
+      </button>
     </div>
-    <div class="row row-cols-1 text-center">
-        <!-- end corusel -->
-        <div class="product-detail">
-            <h1>{{ product.name }}</h1>
-            <div class="container d-flex justify-content-center">
-                <div class="row">
+  </div>
+  <div class="row row-cols-1 text-center">
+    <!-- end corusel -->
+    <div class="product-detail">
+      <h1>{{ product.name }}</h1>
+      <div class="container d-flex justify-content-center">
+        <div class="row">
 
-                    <div class="col-sm-6 col-md-6 col-xs-6 product-price">
-                        <!-- &nbsp; эти каракули для предотвращения переносатекста -->
-                        <div>Цена&nbsp;{{ product.price }}&nbsp;руб.</div>
-                    </div>
+          <div class="col-sm-6 col-md-6 col-xs-6 product-price">
+            <!-- &nbsp; эти каракули для предотвращения переносатекста -->
+            <div>Цена&nbsp;{{ product.price }}&nbsp;руб.</div>
+          </div>
 
-                    <div class="col-sm-6 col-md-6 col-xs-6 product-links">
-                        <form action="{% url 'cart:cart_add' product.id %}" method="post"
-                            class="d-flex align-items-center">
-                            {{ cart_product_form }}
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-secondary cart-add-button ms-2">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </button>
-                        </form>
-                    </div>
+          <div class="col-sm-6 col-md-6 col-xs-6 product-links">
+            <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#cart-total" hx-swap="outerHTML"
+              class="d-flex align-items-center">
+              {{ cart_product_form }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-secondary cart-add-button">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </form>
+          </div>
 
-                </div>
-            </div>
-            <p class="cart-text" style="font-size: 20px; color: #555;">
-                {{ product.description }}
-            </p>
         </div>
+      </div>
+      <p class="cart-text" style="font-size: 20px; color: #555;">
+        {{ product.description }}
+      </p>
     </div>
+  </div>
 </div>
 
 {% endblock %}

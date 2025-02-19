@@ -1,18 +1,12 @@
-{% extends 'includes/base_with_sidebar.html' %}
-
-{% load thumbnail %}
-{% block title %}
-{% if category %}{{ category.name }}{% else %}Products{% endif %}
-{% endblock %}
-
-{% block main_content %}
+{% extends 'includes/base_with_sidebar.html' %} {% load thumbnail %} {% block
+title %} {% if category %}{{ category.name }}{% else %}Products{% endif %} {%
+endblock %} {% block main_content %}
 
 <div class="row">
   <!-- Карточки товара -->
   {% for product in page_obj %}
   <div class="col-lg-4">
     <div class="product-card">
-
       <!-- Изображение продукта -->
 
       <div class="product-thumb">
@@ -22,10 +16,16 @@
         <a href="{{ product.get_absolute_url }}">
           <img src="{{ im.url }}" alt="{{ product.name }}" />
         </a>
-        {% endthumbnail %}
-        {% else %}
-        <div
-          style="display: flex; align-items: center; justify-content: center; width: 100%; height: 200px; background-color: #ccc; border-radius: 5px;">
+        {% endthumbnail %} {% else %}
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 200px;
+            background-color: #ccc;
+            border-radius: 5px;
+          ">
           Нет фото
         </div>
         {% endif %}
@@ -45,26 +45,27 @@
               <!-- форма -->
               <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#cart-total" hx-swap="outerHTML"
                 class="d-flex align-items-center">
+                <!-- Скрытое поле для передачи значения quantity -->
+                <input type="hidden" name="quantity" value="1">
+                <!-- Скрытое поле для передачи значения override -->
+                <input type="hidden" name="override" value="False">
                 {{ cart_product_form }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-outline-secondary cart-add-button ms-2">
+                <button type="submit" class="btn btn-outline-secondary cart-add-button">
                   <!-- иконка -->
                   <i class="fa-solid fa-cart-plus"></i>
                 </button>
               </form>
-
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
   {% endfor %}
 </div>
 <div class="d-flex justify-content-center">
   {% include 'includes/paginator.html' %}
-</div>
 </div>
 
 {% endblock %}
