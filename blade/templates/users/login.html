@@ -47,18 +47,20 @@
             </div>
           </div>
           {% endfor %}
-          <div class="d-flex justify-content-between align-items-center">
-            <button type="submit" class="btn btn-primary">
-              Войти
-            </button>
-            <!-- Тест на внимательность. Без переопределения шаблона этого адреса
-            не существует. Нужно что-то делать, иначе все упадет -->
-            <a href="{% url 'users:password_reset_form' %}" class="btn btn-link">
-              Забыли пароль?
-            </a>
-            <a class="btn btn-link" href="{% url 'users:signup' %}">
-              <span>Впервые у нас<br>зарегистрируйтесь</span>
-            </a>
+          <div class="form-btn-custom">
+            <div class="d-flex justify-content-between align-items-center">
+              <button type="submit" class="btn btn-primary">
+                Войти
+              </button>
+              <!-- Тест на внимательность. Без переопределения шаблона этого адреса
+              не существует. Нужно что-то делать, иначе все упадет -->
+              <a href="{% url 'users:password_reset_form' %}" class="btn btn-link">
+                Забыли пароль?
+              </a>
+              <a class="btn btn-link" href="{% url 'users:signup' %}">
+                <span>Впервые у нас<br>зарегистрируйтесь</span>
+              </a>
+            </div>
           </div>
         </form>
       </div> <!-- cart body -->

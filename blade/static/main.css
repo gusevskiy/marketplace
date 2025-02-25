@@ -161,28 +161,7 @@ a:hover {
 
 /* Start product_list */
 
-/* Стили для кнопки только в карточках товара */
-.cart-add-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    /* Регулируем ширину и высоту кнопки */
-    border: 1px solid #ccc;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    /* Радиус скругления */
-}
 
-.cart-add-button i {
-    font-size: 18px;
-    /* Размер иконки */
-}
-
-.cart-add-button:hover {
-    background-color: #e2e6ea;
-    /* Цвет фона при наведении */
-}
 
 .product-price {
     font-size: 18px;
@@ -285,27 +264,64 @@ a:hover {
 /* ----------------------------------------------- */
 /* Start paginator */
 
-/*цвет текста*/
-.pagination .page-link {
+/* Общие стили для всех кнопок */
+.btn-custom {
     color: black;
+    /* Чёрный текст */
+    background-color: transparent;
+    /* Прозрачный фон */
+    border: 1px solid #ccc;
+    /* Граница */
+    padding: 8px 16px;
+    /* Отступы */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    /* Плавный переход */
 }
 
-/* Цвет фона при наведении */
-.pagination .page-item.active .page-link {
+/* Стили для активной кнопки */
+.btn-custom.active {
     background-color: #555;
+    /* Тёмный фон */
     border-color: #555;
+    /* Тёмная граница */
     color: white;
-
+    /* Белый текст */
 }
 
-/* Цвет фона при наведении на ссылку */
-.pagination .page-item .page-link:hover {
+/* Стили при наведении на кнопку */
+.btn-custom:hover {
     background-color: #555;
+    /* Тёмный фон */
     border-color: #555;
-    /* Темный фон при наведении */
+    /* Тёмная граница */
     color: white;
-    /* Белый текст при наведении */
+    /* Белый текст */
 }
+
+/* Стили для активного состояния (фокус) */
+.btn-custom:focus {
+    outline: none;
+    /* Убираем стандартную обводку браузера */
+    border-color: #6c757d;
+    /* Серая граница */
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.5);
+    /* Тень для акцента */
+}
+
+/* Стили для неактивных ссылок пагинатора */
+.page-item.disabled .btn-custom {
+    color: #6c757d;
+    /* Серый цвет для неактивных элементов */
+    pointer-events: none;
+    /* Отключаем клики */
+    background-color: transparent;
+    /* Прозрачный фон */
+    border-color: #dee2e6;
+    /* Цвет границы */
+}
+
 
 /* End paginator */
 /* ----------------------------------------------- */
@@ -361,3 +377,76 @@ body {
 
 /* End footer */
 /* ----------------------------------------------- */
+
+
+/* Общие стили для кнопок и ссылок в формах */
+.form-btn-custom .btn,
+.form-btn-custom .btn-link {
+    color: black;
+    /* Чёрный текст */
+    background-color: transparent;
+    /* Прозрачный фон */
+    border: 1px solid #ccc;
+    /* Граница */
+    padding: 8px 16px;
+    /* Отступы */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    /* Плавный переход */
+    font-size: 14px;
+    /* Размер текста */
+    border-radius: 4px;
+    /* Скругление углов */
+}
+
+/* Стили для кнопок при наведении */
+.form-btn-custom .btn:hover,
+.form-btn-custom .btn-link:hover {
+    background-color: #555;
+    /* Тёмный фон */
+    border-color: #555;
+    /* Тёмная граница */
+    color: white;
+    /* Белый текст */
+}
+
+/* Стили для активной кнопки */
+.form-btn-custom .btn:active,
+.form-btn-custom .btn-link:active {
+    background-color: #555;
+    /* Тёмный фон */
+    border-color: #555;
+    /* Тёмная граница */
+    color: white;
+    /* Белый текст */
+}
+
+/* Стили для состояния фокуса */
+.form-btn-custom .btn:focus,
+.form-btn-custom .btn-link:focus {
+    outline: none;
+    /* Убираем стандартную обводку браузера */
+    border-color: #6c757d;
+    /* Серая граница */
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.5);
+    /* Тень для акцента */
+}
+
+/* Стили для ссылок (убираем стандартный синий цвет и подчёркивание) */
+.form-btn-custom .btn-link {
+    border: none;
+    /* Убираем границу у ссылок */
+    color: black;
+    /* Чёрный текст */
+}
+
+/* Стили для ссылок при наведении */
+.form-btn-custom .btn-link:hover {
+    background-color: transparent;
+    /* Прозрачный фон */
+    color: #555;
+    /* Тёмный текст */
+    text-decoration: underline;
+    /* Подчёркивание при наведении */
+}

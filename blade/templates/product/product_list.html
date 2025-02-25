@@ -39,7 +39,7 @@ endblock %} {% block main_content %}
         <div class="container">
           <div class="row">
             <div class="col-sm-6 col-md-6 col-xs-6 product-price">
-              <span>{{ product.price }}&nbsp;руб.</span>
+              <span>{{ product.price }}&nbsp;₽</span>
             </div>
             <div class="col-sm-6 col-md-6 col-xs-6 product-links">
               <!-- форма -->
@@ -51,7 +51,7 @@ endblock %} {% block main_content %}
                 <input type="hidden" name="override" value="False">
                 {{ cart_product_form }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-outline-secondary cart-add-button">
+                <button type="submit" class="btn btn-outline-secondary btn-custom">
                   <!-- иконка -->
                   <i class="fa-solid fa-cart-plus"></i>
                 </button>

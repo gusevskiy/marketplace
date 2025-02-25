@@ -8,7 +8,10 @@ class CartAddProductForm(forms.Form):
         min_value=1,  # Минимальное значение
         max_value=10,  # Максимальное значение (можно изменить)
         initial=1,  # Значение по умолчанию
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'style': 'width: 60px;'}),  # Виджет для ввода числа
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'style': 'width: 60px; height: 42px'
+        }),  # Виджет для ввода числа
         label=""  # Убираем метку
     )
     override = forms.BooleanField(required=False,
