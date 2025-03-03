@@ -149,7 +149,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # указываем директорию, в которую будут складываться файлы писем
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
-CELERY_BROKER_URL = 'amqp://gusevskiy:Dreamer3190506@localhost:5672//'
+CELERY_BROKER_URL="redis://redis:6379/0"
+CELERY_RESULT_BACKEND="redis://redis:6379/0"
 
 broker_connection_retry_on_startup = True
 

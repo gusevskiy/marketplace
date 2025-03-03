@@ -1,0 +1,37 @@
+services:
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+  webapp:
+    restart: always
+    build: ./
+    volumes:
+      - ./:/app
+      - ./db.sqlite3:/app/db.sqlite3  # Монтируем файл базы данных
+    ports: 
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py makemigrations && 
+      python manage.py migrate 
+      && python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  worker:
+    restart: always
+    build: .
+    volumes: 
+      - ./:/app
+    depends_on:
+      - redis
+      - webapp
+    command: 'celery -A blade.celery worker -l info'
+    env_file:
+      - .env
+
+
+  
