@@ -1,0 +1,25 @@
+{% extends "includes/base_with_sidebar.html" %}
+{% load static %}
+
+{% block title %}
+Your shopping cart
+{% endblock %}
+
+{% block main_content %}
+
+<form id="city-form">
+  <label for="city-select">Выберите город:</label>
+  <select name="city_code" id="city-select" hx-get="{% url 'cdek:test_cdek' %}" 
+          hx-target="#pvz-list" hx-trigger="change">
+    <option value="">Выберите город</option>
+    {% for city in cities %}
+      <option value="{{ city.code }}">{{ city.city }}</option>
+    {% endfor %}
+  </select>
+</form>
+
+<div id="pvz-list" hx-swap="outerHTML" >
+  {% include "cart/pvz_list.html" %}
+</div>
+
+{% endblock %}

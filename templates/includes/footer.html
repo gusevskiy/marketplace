@@ -1,0 +1,37 @@
+<footer>
+  <section class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-6 text-center pt-3">
+          <h4>Информация</h4>
+          <div class="list-unstyled text-break">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Оплата и доставка</a></li>
+            <li><a href="{% url 'users:privacy-policy' %}">Политика конфиденциальности</a></li>
+          </div>
+        </div>
+        <div class="col-md-4 col-6 text-center pt-3">
+          <h4>Контакты</h4>
+          <div class="list-unstyled text-break">
+            <li><a href="#">О магазине</a></li>
+            <li><a href="#">Оптовый отдел</a></li>
+            <li><a href="{% url 'users:privacy-policy' %}">Вопрос/ответ</a></li>
+          </div>
+        </div>
+        <div class="col-md-4 col-6 text-center pt-3">
+          <h4>Мы в сети</h4>
+          <div class="footer-icons">
+            <a href="#"><i class="fa-brands fa-vk"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <span>© {{ year }} Copyright</span>
+        <span>Все права защищены.</span>
+      </div>
+    </div>
+  </section>
+</footer>

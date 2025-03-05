@@ -1,0 +1,10 @@
+<div id="pvz-list" hx-swap="outerHTML">
+  <h2>Пункты выдачи:</h2>
+  {% if delivery_points %}
+    {% for pvz in delivery_points %}
+      <div>{{ pvz.location.address }}</div>
+    {% endfor %}
+  {% else %}
+    <div>Нет пунктов выдачи для выбранного города.</div>
+  {% endif %}
+</div>

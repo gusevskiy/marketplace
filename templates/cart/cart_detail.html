@@ -1,0 +1,68 @@
+{% extends "includes/base_with_sidebar.html" %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+Your shopping cart
+{% endblock %}
+{% block main_content %}
+<div class="container">
+  <div class="row">
+    <h1>Your shopping cart</h1>
+    {% for item in cart %}
+    {% with product=item.product %}
+    <div class="row">
+      <!-- картинка -->
+      <div class="col-md-2">
+        {% if product.images.first %}
+        {% thumbnail product.images.first.image "100x100" crop="center" as im %}
+        <a href="{{ product.get_absolute_url }}" style="display: block; text-align: center;">
+          <img src="{{ im.url }}" alt="{{ item.name }}" style="max-width: 100%; height: auto; margin: 0 auto;" />
+        </a>
+        {% endthumbnail %}
+        {% else %}
+        <div
+          style="display: flex; align-items: center; justify-content: center; width: 100%; height: 200px; background-color: #ccc; border-radius: 5px;">
+          Нет фото
+        </div>
+        {% endif %}
+      </div>
+      <!-- наименование -->
+      <div class="col-md-2 ">{{ product.name }}</div>
+      <!-- цена за штуку -->
+      <div class="col-md-2">Цена: {{ item.price }}</div>
+      <!-- форма -->
+      <div class="col-md-2">
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+          {{ item.update_quantity_form.quantity }}
+          {{ item.update_quantity_form.override }}
+          <input type="submit" value="Update">
+          {% csrf_token %}
+        </form>
+      </div>
+      <!-- общая стоимость позиции -->
+      <div class="col-md-2">Цена: {{ item.total_price }}</div>
+      <!-- удалить строку -->
+      <div class="col-md-2">
+        <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+          <input type="submit" value="Remove">
+          {% csrf_token %}
+        </form></button>
+      </div>
+      
+    </div>
+    {% endwith %}
+    {% endfor %}
+  </div>
+  <diw class="row">
+    <div class="col-md-4 col-6">
+      <a href="{% url 'product:product_list' %}">Continue shopping</a>
+    </div>
+    <div class="col-md-4 col-6">
+      <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
+    </div>
+    <div class="col-md-4 col-6">
+      {{ cart.get_total_price }}
+    </div>
+  </diw>
+</div>
+{% endblock %}

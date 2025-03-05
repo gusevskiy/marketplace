@@ -1,0 +1,91 @@
+{% load static %}
+<header class="header">
+  <!-- p-0 отступы справа и слева 0 -->
+  <div class="container p-0">
+    <nav class="navbar navbar-expand-lg navbar-light color-window">
+      <div class="container">
+        <!-- Кнопка для мобильных устройств появляется на узких экранах-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Переключить навигацию"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Навигация -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+            <!-- Логотип -->
+            <li class="nav-item">
+              <a href="{% url 'product:product_list' %}" class="nav-link logo">
+                Blade<br /><small class="text-center">магазин ножей</small>
+              </a>
+            </li>
+            <!-- каталог -->
+            <li class="nav-item top-menu">
+              <a class="nav-link" href="{% url 'product:product_list' %}"
+                >Каталог</a
+              >
+            </li>
+            <!-- Контакты -->
+            <li class="nav-item top-menu">
+              <a class="nav-link" href="#">Контакты</a>
+            </li>
+          </ul>
+          <!-- Для зарегистрированных -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+            <!-- Рядом с иконкой выводим имя пользователя -->
+            <li class="nav-item">
+              <a href="#" class="nav-link"
+                ><i class="fa-solid fa-user"></i>
+                <span class="user-name"> {{user.first_name }}</span></a
+              >
+            </li>
+            <!-- Корзина -->
+            <li class="nav-item">
+              <a
+                href="{% url 'cart:cart_detail' %}"
+                class="nav-link d-flex align-items-center"
+              >
+                <i class="fa-solid fa-cart-shopping me-2"></i>
+                <span
+                  id="cart-total"
+                  class="top-0 start-100 translate-middle badge rounded-pill bg-danger {% if cart|length == 0 %}d-none{% endif %}"
+                >
+                  {{ cart|length }}
+                </span>
+              </a>
+            </li>
+
+            <!-- Выйти -->
+            <li class="nav-item">
+              <form method="post" action="{% url 'users:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+              </form>
+            </li>
+
+            {% else %}
+            <!-- Для не зарегистрированных -->
+            <!-- Войти -->
+            <li class="nav-item">
+              <a href="{% url 'users:login' %}" class="nav-link">
+                <!-- иконка -->
+                <i class="fa-solid fa-right-to-bracket"></i
+              ></a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

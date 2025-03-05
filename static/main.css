@@ -1,0 +1,452 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Roboto", serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    background-color: #fff;
+    min-width: 320px;
+}
+
+
+
+main {
+    flex: 1;
+    /* Растягивается, заполняя пространство */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Start Все ссылки */
+a {
+    color: black;
+}
+
+/* при наведении */
+a:hover {
+    color: #555;
+}
+
+/* End  Все ссылки */
+
+
+/* ----------------------------------------------- */
+
+/* Start header */
+
+.logo {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(45deg, #131212, #4d4948, #131212);
+    border-radius: 10px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(135deg, #ff7f50, #000); */
+    z-index: -1;
+    transform: skewX(-20deg);
+    transition: transform 0.3s ease;
+}
+
+.logo small {
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    /* Мелкий текст */
+    display: block;
+    margin-top: -5px;
+    /* Приближаем к основному тексту */
+    color: #2c2b2b;
+    /* Серый цвет для контраста */
+}
+
+/* .logo:hover::before {
+    transform: skewX(-20deg) scale(1.1);
+} */
+
+/* .logo:hover {
+    color: #fff;
+    background: linear-gradient(45deg, #72706f, #4e4a4a, #7e7b7a);
+} */
+
+.navbar-light .navbar-nav .nav-link {
+    color: #111;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.top-menu a::after {
+    content: '';
+    display: block;
+    width: 100%;
+    background-color: #111;
+    height: 1px;
+    transition: all .3s;
+    transform: scale(0);
+
+}
+
+.top-menu a:hover:after {
+    transform: scale(1);
+}
+
+.modal-body img {
+    max-width: 100px;
+}
+
+.d-none {
+    display: none;
+}
+
+/* Общие стили для значка уведомления */
+.nav-link .badge {
+    font-size: 0.8rem;
+    /* Размер шрифта */
+    padding: 0.3rem 0.6rem;
+    /* Отступы */
+    min-width: 1.5rem;
+    /* Минимальная ширина */
+    text-align: center;
+    /* Центрирование текста */
+    line-height: 1;
+    /* Уменьшение высоты строки */
+}
+
+/* Адаптивность для узких экранов */
+@media (max-width: 768px) {
+    .nav-link .badge {
+        font-size: 0.7rem;
+        /* Уменьшаем размер шрифта */
+        padding: 0.2rem 0.4rem;
+        /* Уменьшаем подушку */
+    }
+}
+
+/* End header */
+/* ----------------------------------------------- */
+
+/* Цвет фона всех областей*/
+.color-window {
+    background-color: white;
+}
+
+/* Start aside */
+/* aside {
+    border-left: #fff;
+} */
+
+/* End aside */
+
+/* ----------------------------------------------- */
+
+/* Start product_list */
+
+
+
+.product-price {
+    font-size: 18px;
+    color: black;
+    font-size: 600;
+    /* Активируем Flexbox */
+    display: flex;
+    /* Центрируем по вертикали */
+    align-items: center;
+    /* Убираем отступ слева */
+    padding-left: 0;
+}
+
+.product-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Убираем отступ слева */
+    padding-right: 0;
+    /* text-align: right; */
+}
+
+.product-links form {
+    margin: 0;
+    padding: 0;
+}
+
+/* End product_list */
+
+/* ----------------------------------------------- */
+/* Start Product_detail */
+
+
+
+
+/* End Product_detail */
+
+
+/* ----------------------------------------------- */
+
+/* Start carousel */
+.my-carousel {
+    border: 10px;
+}
+
+.my-carousel .carousel-item {
+    /* display: inline; */
+    height: 100%;
+}
+
+.my-carousel .carousel-item img {
+    object-fit: cover;
+}
+
+/* End carousel */
+/* ----------------------------------------------- */
+/* Start Product cart */
+.product-card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+    transition: all .7s;
+    border-radius: 20px;
+}
+
+.product-card:hover {
+    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+}
+
+.product-thumb a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+.product-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-details {
+    /* Отступы с трех сторон */
+    padding: 0 20px 20px 20px;
+}
+
+.product-details h4 a {
+    font-weight: 500;
+    display: block;
+    /* высота названия */
+    height: 60px;
+    overflow: hidden;
+
+}
+
+
+
+
+
+/* End Product cart */
+/* ----------------------------------------------- */
+/* Start paginator */
+
+/* Общие стили для всех кнопок */
+.btn-custom {
+    color: black;
+    /* Чёрный текст */
+    background-color: transparent;
+    /* Прозрачный фон */
+    border: 1px solid #ccc;
+    /* Граница */
+    padding: 8px 16px;
+    /* Отступы */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    /* Плавный переход */
+}
+
+/* Стили для активной кнопки */
+.btn-custom.active {
+    background-color: #555;
+    /* Тёмный фон */
+    border-color: #555;
+    /* Тёмная граница */
+    color: white;
+    /* Белый текст */
+}
+
+/* Стили при наведении на кнопку */
+.btn-custom:hover {
+    background-color: #555;
+    /* Тёмный фон */
+    border-color: #555;
+    /* Тёмная граница */
+    color: white;
+    /* Белый текст */
+}
+
+/* Стили для активного состояния (фокус) */
+.btn-custom:focus {
+    outline: none;
+    /* Убираем стандартную обводку браузера */
+    border-color: #6c757d;
+    /* Серая граница */
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.5);
+    /* Тень для акцента */
+}
+
+/* Стили для неактивных ссылок пагинатора */
+.page-item.disabled .btn-custom {
+    color: #6c757d;
+    /* Серый цвет для неактивных элементов */
+    pointer-events: none;
+    /* Отключаем клики */
+    background-color: transparent;
+    /* Прозрачный фон */
+    border-color: #dee2e6;
+    /* Цвет границы */
+}
+
+
+/* End paginator */
+/* ----------------------------------------------- */
+
+/* Start footer */
+/* для пришатия footer к низу */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    background-color: #555;
+}
+
+.footer h4 {
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-bottom: 1px solid #666;
+    padding-bottom: 3px;
+
+}
+
+.footer a {
+    text-decoration: none;
+    transition: all .3s;
+
+}
+
+.footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer a,
+.footer li {
+    color: #c8c8c8;
+}
+
+.footer li a {
+    display: block;
+}
+
+.footer-icons a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+/* End footer */
+/* ----------------------------------------------- */
+
+
+/* Общие стили для кнопок и ссылок в формах */
+.form-btn-custom .btn,
+.form-btn-custom .btn-link {
+    color: black;
+    /* Чёрный текст */
+    background-color: transparent;
+    /* Прозрачный фон */
+    border: 1px solid #ccc;
+    /* Граница */
+    padding: 8px 16px;
+    /* Отступы */
+    text-decoration: none;
+    /* Убираем подчёркивание */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    /* Плавный переход */
+    font-size: 14px;
+    /* Размер текста */
+    border-radius: 4px;
+    /* Скругление углов */
+}
+
+/* Стили для кнопок при наведении */
+.form-btn-custom .btn:hover,
+.form-btn-custom .btn-link:hover {
+    background-color: #555;
+    /* Тёмный фон */
+    border-color: #555;
+    /* Тёмная граница */
+    color: white;
+    /* Белый текст */
+}
+
+/* Стили для активной кнопки */
+.form-btn-custom .btn:active,
+.form-btn-custom .btn-link:active {
+    background-color: #555;
+    /* Тёмный фон */
+    border-color: #555;
+    /* Тёмная граница */
+    color: white;
+    /* Белый текст */
+}
+
+/* Стили для состояния фокуса */
+.form-btn-custom .btn:focus,
+.form-btn-custom .btn-link:focus {
+    outline: none;
+    /* Убираем стандартную обводку браузера */
+    border-color: #6c757d;
+    /* Серая граница */
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.5);
+    /* Тень для акцента */
+}
+
+/* Стили для ссылок (убираем стандартный синий цвет и подчёркивание) */
+.form-btn-custom .btn-link {
+    border: none;
+    /* Убираем границу у ссылок */
+    color: black;
+    /* Чёрный текст */
+}
+
+/* Стили для ссылок при наведении */
+.form-btn-custom .btn-link:hover {
+    background-color: transparent;
+    /* Прозрачный фон */
+    color: #555;
+    /* Тёмный текст */
+    text-decoration: underline;
+    /* Подчёркивание при наведении */
+}
