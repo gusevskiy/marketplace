@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from celery.schedules import crontab
 from pathlib import Path
 
 load_dotenv()
@@ -24,6 +25,7 @@ CSRF_TRUSTED_ORIGINS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 INSTALLED_APPS = [
+    'django_celery_beat',
     'cache.apps.CacheConfig',
     'cdek.apps.CdekConfig',
     'payment.apps.PaymentConfig',
@@ -176,6 +178,15 @@ CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 
 broker_connection_retry_on_startup = True
+
+# celery beat 
+# это пока настройка только на очистку кеша раз в неделю, каждое воскресенье в полночь
+CELERY_BEAT_SCHEDULE = {
+    'clear-expired-cache': {
+        'task': 'cache.tasks.clear_expired_cache_task',
+        'schedule': crontab(minute=0, hour=0, day_of_week='sunday'),  # Каждый день в полночь
+    },
+}
 
 # Ю-Касса
 YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')

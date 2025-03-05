@@ -29,9 +29,19 @@ services:
     depends_on:
       - redis
       - webapp
-    command: 'celery -A blade.celery worker -l info'
+    command: celery -A blade.celery worker -l info
     env_file:
       - .env
 
-
+  beat:
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - webapp
+    command: celery -A blade.celery beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file:
+      - .env
   
