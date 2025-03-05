@@ -24,6 +24,7 @@ CSRF_TRUSTED_ORIGINS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 INSTALLED_APPS = [
+    'cdek.apps.CdekConfig',
     'payment.apps.PaymentConfig',
     'product.apps.ProductConfig',
     'orders.apps.OrdersConfig',
@@ -162,3 +163,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'users.authentication.EmailAuthBackend',
 ]
+
+# СДЕК
+CDEK_CLIENT_ID=os.getenv('CDEK_CLIENT_ID')
+CDEK_CLIENT_SECRET=os.getenv('CDEK_CLIENT_SECRET')
+CDEK_API_TOKEN = os.getenv('CDEK_API_TOKEN')
+CDEK_API_URL = os.getenv('CDEK_API_URL')
