@@ -24,6 +24,7 @@ CSRF_TRUSTED_ORIGINS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 INSTALLED_APPS = [
+    'cache.apps.CacheConfig',
     'cdek.apps.CdekConfig',
     'payment.apps.PaymentConfig',
     'product.apps.ProductConfig',
@@ -171,8 +172,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # указываем директорию, в которую будут складываться файлы писем
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
-CELERY_BROKER_URL="redis://redis:6379/0"
-CELERY_RESULT_BACKEND="redis://redis:6379/0"
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 
 broker_connection_retry_on_startup = True
 
@@ -186,6 +187,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # СДЕК
-CDEK_CLIENT_ID=os.getenv('CDEK_CLIENT_ID')
-CDEK_CLIENT_SECRET=os.getenv('CDEK_CLIENT_SECRET')
+CDEK_CLIENT_ID = os.getenv('CDEK_CLIENT_ID')
+CDEK_CLIENT_SECRET = os.getenv('CDEK_CLIENT_SECRET')
 CDEK_API_URL = os.getenv('CDEK_API_URL')
