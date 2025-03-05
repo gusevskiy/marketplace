@@ -4,6 +4,9 @@ from django.template import loader
 from django.http import HttpResponse
 from .models import Product, Category, ProductImage
 from cart.forms import CartAddProductForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def product_list(request, category_slug=None):
@@ -11,6 +14,7 @@ def product_list(request, category_slug=None):
     главная страница
     path('', views.catalog_list, name="product_list"),
     """
+    
     category = None
     categories = Category.objects.all()
     # products = Product.objects.filter(available=True)
