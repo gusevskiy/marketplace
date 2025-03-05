@@ -2,35 +2,44 @@ import requests
 import os
 from django.conf import settings
 from datetime import datetime, timedelta
+from .models import CDEKToken
 
 class CDEKAPI:
     def __init__(self):
-        self.token = settings.CDEK_API_TOKEN
         self.base_url = settings.CDEK_API_URL
         self.headers = {
-            'Authorization': f'Bearer {self.token}',
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
-        # self.get_token()
+        self.get_token()
+
+    def get_token(self):
+        token_obj = CDEKToken.objects.first()
+        if token_obj and token_obj.expires_at > datetime.now():
+            self.token = token_obj.access_token
+            self.headers['Authorization'] = f'Bearer {self.token}'
+            return True
+        else:
+            return self.refresh_token()
 
     def refresh_token(self):
-        url = f'{self.base_url}/oauth/token'
+        url = f'{self.base_url}/v2/oauth/token'
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': 'application/json'
         }
         data = {
             'grant_type': 'client_credentials',
-            'client_id': settings.CDEK_CLIENT_ID, #Добавить в .env CLIENT_ID
-            'client_secret': settings.CDEK_CLIENT_SECRET #Добавить в .env CLIENT_SECRET
+            'client_id': settings.CDEK_CLIENT_ID,
+            'client_secret': settings.CDEK_CLIENT_SECRET
         }
         response = requests.post(url, headers=headers, data=data)
         if response.status_code == 200:
             token_data = response.json()
             self.token = token_data['access_token']
             self.headers['Authorization'] = f'Bearer {self.token}'
-            self.token_expiration = datetime.now() + timedelta(seconds=token_data['expires_in']) # Обновляем время жизни токена.
+            # время токена в секундах, прибавляем их к текущему и получаем врямя истечения
+            self.token_expiration = datetime.now() + timedelta(seconds=token_data['expires_in'])
             settings.CDEK_API_TOKEN = self.token #Обновляем токен в настройках
             return True
         else:
